@@ -18,12 +18,15 @@ export default function RootLayout({ children }) {
             <div className="flex justify-between h-16">
               <div className="flex items-center">
                 {/* Logo Placeholder */}
-                <span className="text-2xl font-bold text-blue-900">Huroca</span>
+                <span className="text-2xl font-bold text-black">Huroca</span>
+
               </div>
               <div className="hidden sm:flex sm:items-center sm:space-x-8">
-                <a href="#technology" className="text-gray-600 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium">Technology</a>
+                <a href="#technology" className="text-gray-600 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium">Our Technology</a>
+                <a href="#whychooseus" className="text-gray-600 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium">Why Choose Us</a>
                 <a href="#about" className="text-gray-600 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium">About Us</a>
-                <button className="bg-blue-900 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-800">
+                <a href="#team" className="text-gray-600 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium">Our Team</a>
+                <button className="bg-green-900 text-white px-4 py-2 rounded-3xl text-sm font-medium hover:bg-green-800">
                   Contact Us
                 </button>
               </div>

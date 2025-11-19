@@ -52,9 +52,9 @@ export default function Home() {
       </section>
     {/* Supported By Section */}
       <section className="py-10 bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
-            Supported By
+            Industry and Academic Network
           </p>
           
           {/* Logo Grid */}
@@ -62,24 +62,27 @@ export default function Home() {
 
             
             {/* Logo 1 */}
-            <div className="h-12 flex items-center">
+            <div className="w-64 h-32 flex justify-center items-center hover:grayscale-0 transition-all duration-300">
               <img src="/UFA.png" alt="Supporter 1" className="h-full w-auto object-contain" />
             </div>
 
             {/* Logo 2 */}
-            <div className="h-12 flex items-center">
+            
+            <div className="w-80 h-32 flex justify-center items-center hover:grayscale-0 transition-all duration-300">
+              <img src="/HUB.png" alt="Supporter 4" className="h-full w-auto object-contain" />
+            </div>
+            {/* Logo 3 */}
+            <div className="w-64 h-32 flex justify-center items-center hover:grayscale-0 transition-all duration-300">
               <img src="/ACFA.png" alt="Supporter 2" className="h-full w-auto object-contain" />
             </div>
 
-            {/* Logo 3 */}
-            <div className="h-12 flex items-center">
-              <img src="/UOFL.png" alt="Supporter 3" className="h-full w-auto object-contain" />
+            
+            {/* Logo 4 */}
+            <div className="w-64 h-32 flex justify-center items-center hover:grayscale-0 transition-all duration-300">
+              <img src="/UOFL_Horizontal.png" alt="Supporter 3" className="h-full w-auto object-contain" />
             </div>
 
-            {/* Logo 4 */}
-            <div className="h-12 flex items-center">
-              <img src="/HUB.png" alt="Supporter 4" className="h-full w-auto object-contain" />
-            </div>
+            
 
           </div>
         </div>
