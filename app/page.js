@@ -47,19 +47,19 @@ export default function Home() {
         {/* LAYER 2: Content Overlay */}
         {/* 'relative z-10' ensures text sits ON TOP of the 3D model */}
         {/* 'pointer-events-none' lets the mouse pass through text to rotate the robot (optional) */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pointer-events-none">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left pointer-events-none w-full">
           
-          <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl mb-6 drop-shadow-sm">
+           <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl mb-6 drop-shadow-sm">
             Robotics for the <br />
             <span className="text-blue-600">Modern Cattle Industry</span>
           </h1>
           
-          <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto mb-10 font-medium">
+             <p className="mt-4 text-xl text-gray-600 max-w-2xl mb-10 font-medium">
             Huroca combines advanced robotics and computer vision to automate agricultural processes.
           </p>
           
           {/* We re-enable pointer events for buttons so they are clickable */}
-          <div className="flex justify-center gap-4 pointer-events-auto">
+          <div className="flex justify-start gap-4 pointer-events-auto">
             <button className="bg-blue-600/90 backdrop-blur-sm text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-lg">
               See Our Tech
             </button>
@@ -165,7 +165,7 @@ export default function Home() {
                  {/* <img src="/team-member-1.jpg" alt="Founder Name" className="w-full h-full object-cover" /> */}
                  <span className="w-full h-full flex items-center justify-center text-gray-400 text-4xl">👤</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Your Name</h3>
+              <h3 className="text-xl font-bold text-gray-900">Emilio Hurtado</h3>
               <p className="text-blue-600 font-medium mb-3">Co-Founder & CEO</p>
               <p className="text-gray-500 text-sm">
                 Computer Science & Neuroscience background. Leading the vision for automated cattle care.
@@ -177,7 +177,7 @@ export default function Home() {
               <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden">
                  <span className="w-full h-full flex items-center justify-center text-gray-400 text-4xl">👤</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Co-Founder Name</h3>
+              <h3 className="text-xl font-bold text-gray-900">Chandra Suryadevara</h3>
               <p className="text-blue-600 font-medium mb-3">Co-Founder & CTO</p>
               <p className="text-gray-500 text-sm">
                 Specializing in Robotics and Hardware integration for rugged environments.
