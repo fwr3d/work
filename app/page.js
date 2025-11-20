@@ -1,4 +1,5 @@
 "use client";
+import Spline from '@splinetool/react-spline';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
@@ -30,25 +31,47 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
       
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-white to-gray-50 py-20 lg:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl mb-6">
+      {/* HERO SECTION */}
+      <section className="relative h-[68vh] w-full flex items-center justify-center bg-gray-50 overflow-hidden">
+        
+        {/* LAYER 1: 3D Background */}
+        {/* We use 'absolute inset-0' to stretch it to fill the section */}
+        
+        <div className="absolute inset-0 z-0 hidden md:block">
+           {/* REPLACE THE URL BELOW with the one you copied from Spline.
+              I have put a placeholder robot URL here for now so you can test it immediately.
+           */}
+           <Spline scene="https://prod.spline.design/QkMeddUzFh1r5iQy/scene.splinecode" />
+        </div>
+
+        {/* LAYER 2: Content Overlay */}
+        {/* 'relative z-10' ensures text sits ON TOP of the 3D model */}
+        {/* 'pointer-events-none' lets the mouse pass through text to rotate the robot (optional) */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pointer-events-none">
+          
+          <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl mb-6 drop-shadow-sm">
             Robotics for the <br />
             <span className="text-blue-600">Modern Cattle Industry</span>
           </h1>
-          <p className="mt-4 text-xl text-gray-500 max-w-2xl mx-auto mb-10">
-            Huroca combines advanced robotics and computer vision to automate agricultural processes, improving efficiency and animal welfare.
+          
+          <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto mb-10 font-medium">
+            Huroca combines advanced robotics and computer vision to automate agricultural processes.
           </p>
-          <div className="flex justify-center gap-4">
-            <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-lg">
+          
+          {/* We re-enable pointer events for buttons so they are clickable */}
+          <div className="flex justify-center gap-4 pointer-events-auto">
+            <button className="bg-blue-600/90 backdrop-blur-sm text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-lg">
               See Our Tech
             </button>
-            <button className="bg-white text-gray-700 border border-gray-300 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition">
+            <button className="bg-white/80 backdrop-blur-sm text-gray-700 border border-gray-300 px-8 py-3 rounded-lg font-semibold hover:bg-white transition">
               Learn More
             </button>
           </div>
+
         </div>
+
+        {/* Optional: Fade at the bottom to blend into the next section */}
+        <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-white to-transparent z-10"></div>
       </section>
     {/* Supported By Section */}
       <section className="py-10 bg-white border-b border-gray-100">
