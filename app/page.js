@@ -25,7 +25,7 @@ import {
 export default function Home() {
   const router = useRouter();
 
-
+  const [isSplineLoaded, setIsSplineLoaded] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const techImages = ["/SIM.png", "/SIM2.png"]; 
 
@@ -65,9 +65,11 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative h-[70vh] w-full flex items-center justify-center bg-gray-50 overflow-hidden">
         
-        {/* LAYER 1: 3D Background */}
-        <div className="absolute inset-0 z-0 hidden md:block">
-           <Spline scene="https://prod.spline.design/QkMeddUzFh1r5iQy/scene.splinecode" />
+        <div className={`absolute inset-0 z-0 hidden md:block transition-opacity duration-1000 ease-in-out ${isSplineLoaded ? 'opacity-100' : 'opacity-0'}`}>
+           <Spline 
+             scene="https://prod.spline.design/QkMeddUzFh1r5iQy/scene.splinecode" 
+             onLoad={() => setIsSplineLoaded(true)}
+           />
         </div>
 
         {/* LAYER 2: Content Overlay */}
