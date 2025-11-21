@@ -202,7 +202,7 @@ export default function Home() {
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Zero Downtime</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    The "Robotics-as-a-Service" model covers hardware, software, and maintenance, ensuring you are always operational without upfront CAPEX risk.
+                    The "Robotics-as-a-Service" model covers hardware, software, and maintenance, ensuring you are always operational without upfront capital expenditure risk.
                   </p>
                 </div>
               </div>
@@ -482,7 +482,7 @@ export default function Home() {
               {/* Advisor 1 - Compact Card */}
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-blue-100 transition-all">
                 <div className="w-20 h-20 bg-blue-50 rounded-full mx-auto mb-4 overflow-hidden relative border border-blue-100">
-                  <img src="/hardeep.png" alt="Dr. Hardeep Ryait" className="w-full h-full object-cover" />
+                  <img src="/potraits/hardeep.jpeg" alt="Dr. Hardeep Ryait" className="w-full h-full object-cover" />
                 </div>
                 <h3 className="text-base font-bold text-gray-900">Dr. Hardeep Ryait</h3>
                 <p className="text-green-600 text-xs font-bold uppercase tracking-wide mb-2">Technical Mentor</p>
