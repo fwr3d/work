@@ -225,7 +225,7 @@ export default function Home() {
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Zero Downtime</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    The "Robotics-as-a-Service" model covers hardware, software, and maintenance, ensuring you are always operational without upfront CAPEX risk.
+                    The "Robotics-as-a-Service" model covers hardware, software, and maintenance, ensuring you are always operational without upfront CapEx risk.
                   </p>
                 </div>
               </div>
