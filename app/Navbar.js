@@ -31,8 +31,9 @@ export default function Navbar() {
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"
               onClick={handleLinkClick}
             >
-              <img src="/Huroca-Icon.png" alt="Huroca Logo" className="h-10 w-auto" />
+
               <span className="text-2xl font-bold text-black">Huroca</span>
+              <img src="/Huroca-Icon.png" alt="Huroca Logo"  className="h-10 w-auto -ml-5 mb-4"  />    
             </Link>
           </div>
           

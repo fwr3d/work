@@ -63,7 +63,7 @@ export default function Home() {
     <main className="flex flex-col min-h-screen">
       
       {/* HERO SECTION */}
-      <section className="relative h-[70vh] w-full flex items-center justify-center bg-gray-50 overflow-hidden">
+      <section id="home" className="relative h-[70vh] w-full flex items-center justify-center bg-gray-50 overflow-hidden">
         
         <div className={`absolute inset-0 z-0 hidden md:block transition-opacity duration-1000 ease-in-out ${isSplineLoaded ? 'opacity-100' : 'opacity-0'}`}>
            <Spline 
@@ -77,7 +77,7 @@ export default function Home() {
           
            <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl mb-6 drop-shadow-sm">
             Autonomous  <br />
-            <span className="text-green-800">Precision Vaccinations</span>
+            <span className="text-green-700">Precision Vaccinations</span>
           </h1>
           
              <p className="mt-4 text-xl text-gray-600 max-w-2xl mb-10 font-medium">
@@ -85,12 +85,15 @@ export default function Home() {
           </p>
           
           <div className="flex justify-start gap-4 pointer-events-auto">
-            <button className="bg-blue-600/90 backdrop-blur-sm text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-lg">
+            {/* <button className="bg-blue-600/90 backdrop-blur-sm text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-lg">
               See Our Tech
-            </button>
-            <button className="bg-white/80 backdrop-blur-sm text-gray-700 border border-gray-300 px-8 py-3 rounded-lg font-semibold hover:bg-white transition">
-              Learn More
-            </button>
+            </button> */}
+              <a 
+                href="#about" 
+                className="bg-green-800 backdrop-blur-sm text-white border border-gray-300 px-6 py-3 md:px-8 md:py-3 rounded-lg font-semibold hover:bg-green-600 transition text-base md:text-lg inline-block text-center"
+              >
+                Learn More
+              </a>
           </div>
 
         </div>
@@ -131,7 +134,7 @@ export default function Home() {
         </div>
       </section>
       
-       <section id="technology" className="relative py-24 bg-white border-t border-gray-100 overflow-hidden">
+       <section id="technology" className="relative py-30 bg-white border-t border-gray-100 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-[0.03]" 
              style={{ 
                backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
@@ -142,7 +145,7 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="mb-16 text-center md:text-left">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Validated in <span className="text-green-800">Simulation.</span> <br />
+              Validated in <span className="text-green-700">Simulation.</span> <br />
               Deployed in Reality.
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl">
@@ -188,8 +191,8 @@ export default function Home() {
             {/* Right Col: Features List */}
             <div className="space-y-8">
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
-                  <Eye className="w-6 h-6" />
+                <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
+                  <Eye className="w-10 h-10" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">AI-Driven Perception</h3>
@@ -199,19 +202,19 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 border border-purple-100">
-                   <Cpu className="w-6 h-6" />
+                <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 border border-purple-100">
+                   <Cpu className="w-10 h-10" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Chute Compatible</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Designed as a modular add-on that integrates into your existing standard squeeze chutes—no need to rebuild your facility.
+                    Designed as a modular add-on that integrates into your existing standard squeeze chutes without the need to rebuild your facility.
                   </p>
                 </div>
               </div>
               <div className="flex gap-4">
-                 <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 border border-orange-100">
-                   <CheckCircle2 className="w-6 h-6" />
+                 <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 border border-orange-100">
+                   <CheckCircle2 className="w-10 h-10" />
                  </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Robotic Precision</h3>
@@ -221,8 +224,8 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex gap-4">
-                 <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-green-600 border border-green-100">
-                   <MonitorPlay className="w-6 h-6" />
+                 <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-green-50 flex items-center justify-center text-green-600 border border-green-100">
+                   <MonitorPlay className="w-10 h-10" />
                  </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Zero Downtime</h3>
@@ -251,7 +254,7 @@ export default function Home() {
           <div className="max-w-3xl mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-[1.1] mb-6">
               Replacing manual risk <br />
-              with <span className="text-green-800">robotic reliability.</span>
+              with <span className="text-green-700">robotic reliability.</span>
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed border-l-4 border-blue-100 pl-6">
               Huroca brings industrial robotics and computer vision to the feedlot,
@@ -306,9 +309,9 @@ export default function Home() {
               <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-4 text-amber-600">
                 <Users size={24} />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Labor Solved</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Operational Efficiency</h3>
               <p className="text-gray-500 text-sm">
-                Fills the labor gap so your team can focus on management—not manual labor.
+                Solves staffing shortages so your crew can apply their expertise where it matters most
               </p>
             </div>
 
@@ -340,27 +343,27 @@ export default function Home() {
              }}>
         </div>
 
-         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-28 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               
               {/* Text Column */}
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-800 text-xs font-bold tracking-wide uppercase mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold tracking-wide uppercase mb-6">
                   <MapPin size={14} />
                   Born in Lethbridge
                 </div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                  Bridging technology where it’s <br/>
-                  <span className="text-green-800">needed the most.</span>
+                  Bringing technology where it’s <br/>
+                  <span className="text-green-700">needed the most.</span>
                 </h2>
                 
                 <div className="space-y-6 text-lg text-gray-600">
                   <p>
-                    Huroca isn't a Silicon Valley transplant. We are a homegrown startup born in 
-                    <span className="font-semibold text-gray-900"> Lethbridge, Alberta</span>—the heart of Canada’s Feedlot Alley.
+                    Huroca is a homegrown startup born in 
+                    <span className="font-semibold text-gray-900"> Lethbridge, Alberta</span> the heart of Canada’s Feedlot Alley.
                   </p>
                   <p>
-                    We saw a gap between advanced automation technology and the rugged, practical needs of Southern Alberta feedlots. Our mission is simple: to build the bridge that brings silicon-valley grade robotics directly to the chute.
+                    We saw a gap between advanced automation technology and the rugged, practical needs of Southern Alberta feedlots. Our mission is simple: to build the bridge that brings industry grade robotics directly to the chute.
                   </p>
                 </div>
 
@@ -368,23 +371,23 @@ export default function Home() {
                   
                   {/* Support Item 1 */}
                   <div className="flex gap-4">
-                    <div className="w-10 h-10 bg-white rounded-lg shadow-sm border border-gray-100 flex items-center justify-center text-blue-600 shrink-0">
-                      <Building2 size={20} />
+                    <div className="w-20 h-20 bg-white rounded-lg shadow-sm border border-gray-100 flex items-center justify-center text-blue-600 shrink-0">
+                      <Building2 size={40} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 text-sm">Industry Network</h4>
-                      <p className="text-xs text-gray-500 mt-1">Supported by UFA & Alberta Beef Association</p>
+                      <h4 className="font-bold text-gray-900 text-lg">Industry Network</h4>
+                      <p className="text-sm text-gray-500 mt-1"> UFA & Alberta Beef Association</p>
                     </div>
                   </div>
 
                   {/* Support Item 2 */}
                   <div className="flex gap-4">
-                    <div className="w-10 h-10 bg-white rounded-lg shadow-sm border border-gray-100 flex items-center justify-center text-purple-600 shrink-0">
-                      <GraduationCap size={20} />
+                    <div className="w-20 h-20 bg-white rounded-lg shadow-sm border border-gray-100 flex items-center justify-center text-purple-600 shrink-0">
+                      <GraduationCap size={40} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 text-sm">Research Driven</h4>
-                      <p className="text-xs text-gray-500 mt-1">Univ. of Lethbridge & Hub for Neuroengineering</p>
+                      <h4 className="font-bold text-gray-900 text-lg">Research Driven</h4>
+                      <p className="text-sm text-gray-500 mt-1">Univ. of Lethbridge & Hub for Neuroengineering Solutions</p>
                     </div>
                   </div>
                 </div>
@@ -400,20 +403,20 @@ export default function Home() {
                             <Award size={24} />
                          </div>
                          <div>
-                            <h3 className="font-bold text-gray-900">Made for the Industry</h3>
+                            <h3 className="font-bold text-xl text-gray-900">Made for the Industry</h3>
                             <p className="text-sm text-gray-500">Solving real problems for real producers.</p>
                          </div>
                       </div>
                       
                       <div className="bg-gray-50 rounded-xl p-6">
-                         <p className="text-gray-600 italic text-sm leading-relaxed">
+                         <p className="text-gray-600 italic text-lg leading-relaxed">
                            "We aren't just building robots; we are building the future workforce of the feedlot. Reliable, safe, and always operational."
                          </p>
                          <div className="mt-4 flex items-center gap-3">
                              <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200 border border-gray-200">
                                 <img src="/potraits/emilio.jpeg" alt="EH" className="w-full h-full object-cover" />
                             </div>
-                            <span className="text-xs font-bold text-gray-900">Emilio Hurtado, CEO</span>
+                            <span className="text-s font-bold text-gray-900">Emilio Hurtado, CEO</span>
                          </div>
                       </div>
                       
@@ -457,7 +460,7 @@ export default function Home() {
           </p>
           
           {/* Core Team Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             
             {/* Team Member 1 */}
             <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
@@ -465,7 +468,7 @@ export default function Home() {
                  <img src="/potraits/emilio.jpeg" alt="Emilio Hurtado" className="w-full h-full object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Emilio Hurtado</h3>
-              <p className="text-green-800 font-medium mb-3">Co-Founder & CEO</p>
+              <p className="text-green-700 font-medium mb-3">Co-Founder & CEO</p>
               <p className="text-gray-500 text-sm">
                 Combines a background in AI & Neuroscience with hands-on feedlot experience to lead the vision for automated cattle care.
               </p>
@@ -477,7 +480,7 @@ export default function Home() {
                  <img src="/potraits/chandra.jpg" alt="Chandra Suryadevara" className="w-full h-full object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Chandra Suryadevara</h3>
-              <p className="text-green-800 font-medium mb-3">Co-Founder & CTO</p>
+              <p className="text-green-700 font-medium mb-3">Co-Founder & CTO</p>
               <p className="text-gray-500 text-sm">
                 Specializing in Software-Hardware integration, robotics systems, and software architecture.
               </p>
@@ -489,14 +492,13 @@ export default function Home() {
                  <img src="/potraits/brendon.png" alt="Brendon Penner" className="w-full h-full object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Brendon Penner</h3>
-              <p className="text-green-800 font-medium mb-3">COO</p>
+              <p className="text-green-700 font-medium mb-3">COO</p>
               <p className="text-gray-500 text-sm">
                  Leadership-driven operations expert with experience managing the Hub for Neuroengineering Solutions. Dedicated to team success and execution excellence.
               </p>
             </div>
 
           </div>
-  {/* Advisors Section - UPDATED: More compact to create hierarchy */}
           <div className="max-w-5xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-900 mb-8 relative inline-block">
               Mentors & Advisors
@@ -562,7 +564,7 @@ export default function Home() {
             <div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 Ready to automate <br/> 
-                <span className="text-green-800">your feedlot?</span>
+                <span className="text-green-700">your feedlot?</span>
               </h2>
               <p className="text-lg text-gray-600 mb-12 leading-relaxed">
                 Whether you are interested in piloting our technology, investing in the future of ag-tech, or just want to learn more, we want to hear from you. We are currently accepting partners for our pilot program in Alberta.
