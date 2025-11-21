@@ -307,11 +307,14 @@ export default function Home() {
       </section>
 
 
-<section id="about" className="py-24 bg-gray-50 border-t border-gray-100 relative">
-         {/* Subtle Map Pattern Background */}
-         <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
-              style={{ backgroundImage: 'radial-gradient(#22c55e 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}>
-         </div>
+ <section id="about" className="py-24 bg-white border-t border-gray-100 relative overflow-hidden">
+         {/* Background Pattern - Updated to match grid style */}
+         <div className="absolute inset-0 z-0 opacity-[0.03]" 
+             style={{ 
+               backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
+               backgroundSize: '40px 40px' 
+             }}>
+        </div>
 
          <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -433,7 +436,7 @@ export default function Home() {
             {/* Team Member 1 */}
             <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
               <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden">
-                 <span className="w-full h-full flex items-center justify-center text-gray-400 text-4xl">👤</span>
+                 <img src="/potraits/emilio.jpeg" alt="Emilio Hurtado" className="w-full h-full object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Emilio Hurtado</h3>
               <p className="text-green-800 font-medium mb-3">Co-Founder & CEO</p>
@@ -445,7 +448,7 @@ export default function Home() {
             {/* Team Member 2 */}
             <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
               <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden">
-                 <span className="w-full h-full flex items-center justify-center text-gray-400 text-4xl">👤</span>
+                 <img src="/potraits/chandra.jpg" alt="Chandra Suryadevara" className="w-full h-full object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Chandra Suryadevara</h3>
               <p className="text-green-800 font-medium mb-3">Co-Founder & CTO</p>
@@ -503,7 +506,7 @@ export default function Home() {
               {/* Advisor 3 - Compact Card */}
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-green-100 transition-all">
                 <div className="w-20 h-20 bg-green-50 rounded-full mx-auto mb-4 overflow-hidden relative border border-green-100">
-                  <img src="/cristo.png" alt="Cristo Hurtado" className="w-full h-full object-cover" />
+                  <img src="/potraits/cristo.jpeg" alt="Cristo Hurtado" className="w-full h-full object-cover" />
                 </div>
                 <h3 className="text-base font-bold text-gray-900">Cristo Hurtado</h3>
                 <p className="text-green-600 text-xs font-bold uppercase tracking-wide mb-2">Industry Advisor</p>
