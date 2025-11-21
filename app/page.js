@@ -376,7 +376,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900 text-lg">Industry Network</h4>
-                      <p className="text-sm text-gray-500 mt-1"> UFA & Alberta Beef Association</p>
+                      <p className="text-sm text-gray-500 mt-1"> UFA & Alberta Cattle Feeders Association</p>
                     </div>
                   </div>
 
@@ -398,7 +398,7 @@ export default function Home() {
                 <div className="absolute -inset-4 bg-gradient-to-tr from-green-100 to-blue-50 rounded-[2.5rem] blur-2xl opacity-60"></div>
                 <div className="relative bg-white rounded-[2rem] p-8 shadow-xl border border-gray-100">
                    <div className="flex flex-col gap-6">
-                      <div className="flex items-center gap-4 pb-6 border-b border-gray-100">
+                      <div className="flex items-center gap-4 pb-6 border-b border-gray-200">
                          <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-700">
                             <Award size={24} />
                          </div>
