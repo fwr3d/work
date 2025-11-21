@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+````markdown
+# Huroca – Autonomous Precision Vaccination
 
-## Getting Started
+Welcome to the official website repository for **Huroca**, a robotics startup based in Lethbridge, Alberta, transforming the cattle industry through automated vaccination systems.
 
-First, run the development server:
+This project is built with **Next.js 14 (App Router)**, **Tailwind CSS**, and **Spline 3D**.
+
+---
+
+## 🛠 Tech Stack
+
+- **Framework:** Next.js 14  
+- **Styling:** Tailwind CSS  
+- **3D Elements:** Spline (`@splinetool/react-spline`)  
+- **Icons:** Lucide React  
+- **Forms:** Formspree  
+- **Package Manager:** pnpm  
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to run the project locally.
+
+### 1. Prerequisites
+
+- Node.js v18 or higher  
+- pnpm installed globally:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install -g pnpm
+````
+
+### 2. Installation
+
+Clone the repository and install dependencies:
+
+```bash
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Run the Development Server
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Start the local dev server:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📂 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+├── app/
+│   ├── layout.js      # Main layout (Navbar, Footer, SEO metadata)
+│   ├── page.js        # Homepage (Hero, Features, Team, Contact)
+│   └── globals.css    # Global styles & Tailwind directives
+├── public/            # Static assets (Images, Logos, Icons)
+│   ├── Huroca-Icon.png
+│   ├── SIM.png
+│   └── ...
+├── next.config.mjs    # Next.js configuration
+├── tailwind.config.js # Tailwind configuration
+└── package.json       # Dependencies and scripts
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 Customization Guide
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3D Model (Spline)
+
+The hero section uses a 3D robotic arm scene hosted on Spline.
+
+* Update the model by editing the `scene` prop in `app/page.js` inside the `<Spline />` component.
+* Ensure the URL points to a valid `.splinecode` file.
+
+### Contact Form
+
+The project uses **Formspree** for contact form submissions.
+
+* Open `app/page.js`.
+* Locate the `handleSubmit` function.
+* Replace:
+
+```
+https://formspree.io/f/
+```
+
+with your own new Formspree endpoint ID.
+
+### Images
+
+* Add all static images (team photos, logos, etc.) to the `public/` directory.
+* Reference them using absolute paths beginning with `/`, e.g.:
+
+```
+/portraits/emilio.jpeg
+```
+
+---
+
+## 📦 Building for Production
+
+Create an optimized production build:
+
+```bash
+pnpm build
+```
+
+Run the production server locally:
+
+```bash
+pnpm start
+```
+
+---
+
+## ☁️ Deployment
+
+Deploying to **Vercel**:
+
+1. Push your repository to GitHub.
+2. Vercel will automatically Deploy.
+
+---
+
+## 📄 License
+
+© 2025 Huroca Technologies Inc. All rights reserved.
+
+```
+```
