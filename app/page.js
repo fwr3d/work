@@ -1,6 +1,7 @@
 "use client";
 import Spline from '@splinetool/react-spline';
 import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react'; 
 import { 
   Target, 
   ShieldCheck, 
@@ -23,6 +24,17 @@ import {
 
 export default function Home() {
   const router = useRouter();
+
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const techImages = ["/SIM.png", "/SIM2.png"]; 
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % techImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   async function handleSubmit(event) {
     event.preventDefault(); // Stop the default HTML form refresh
@@ -63,7 +75,7 @@ export default function Home() {
           
            <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl mb-6 drop-shadow-sm">
             Autonomous  <br />
-            <span className="text-green-800">Precision Vaccination</span>
+            <span className="text-green-800">Precision Vaccinations</span>
           </h1>
           
              <p className="mt-4 text-xl text-gray-600 max-w-2xl mb-10 font-medium">
@@ -117,9 +129,7 @@ export default function Home() {
         </div>
       </section>
       
-      {/* TECHNOLOGY SECTION WITH GRID */}
-      <section id="technology" className="relative py-24 bg-white border-t border-gray-100 overflow-hidden">
-        {/* Background Pattern */}
+       <section id="technology" className="relative py-24 bg-white border-t border-gray-100 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-[0.03]" 
              style={{ 
                backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
@@ -128,7 +138,6 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-          
           <div className="mb-16 text-center md:text-left">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Validated in <span className="text-green-800">Simulation.</span> <br />
@@ -139,39 +148,57 @@ export default function Home() {
             </p>
           </div>
 
+          {/* Layout: 2 Columns (Image Left, Text Right) - Same as static version */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
             
-            {/* Left Col: Image */}
+            {/* Left Col: Slideshow Container */}
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 border border-gray-200 group">
-               <div className="aspect-[4/3] bg-slate-900 relative flex items-center justify-center">
-                  <div className="absolute inset-0 opacity-30" 
-                       style={{ backgroundImage: 'radial-gradient(circle, #4f46e5 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
+               {/* Fixed Aspect Ratio 4:3 to prevent layout jumping */}
+               <div className="aspect-[4/3] bg-slate-900 relative flex items-center justify-center overflow-hidden">
+
+
+                  {/* Slideshow Images */}
+                  {techImages.map((src, index) => (
+                    <img 
+                      key={index}
+                      src={src} 
+                      alt={`Simulation View ${index + 1}`} 
+                      className={`absolute inset-0 w-full h-full object-contain transition-all duration-1000 ease-in-out ${
+                        index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                      }`} 
+                    />
+                  ))}
+
+                  {/* Navigation Dots */}
+                  <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-2 z-20">
+                    {techImages.map((_, index) => (
+                      <button 
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`w-2 h-2 rounded-full transition-all ${index === currentSlide ? 'bg-green-500 w-4' : 'bg-white/50 hover:bg-white'}`}
+                      />
+                    ))}
                   </div>
-                  <img src="/SIM.png" alt="NVIDIA Isaac Sim Simulation" className="absolute inset-0 w-full h-full object-cover opacity-100 hover:scale-105 transition-transform duration-700" />
-                  
                </div>
                
             </div>
 
             {/* Right Col: Features List */}
             <div className="space-y-8">
-              {/* Feature 1 */}
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
-                  <span className="text-xl">👁️</span>
+                  <Eye className="w-6 h-6" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">AI-Driven Perception</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Our system uses Mask R-CNN (Detectron2)to identify the perfect injection site on the neck musculature instantly, filtering out debris and motion blur.
+                    Our system uses Mask R-CNN (Detectron2) to identify the perfect injection site on the neck musculature instantly.
                   </p>
                 </div>
               </div>
-
-              {/* Feature 2 */}
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 border border-purple-100">
-                   <span className="text-xl">⚙️</span>
+                   <Cpu className="w-6 h-6" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Chute Compatible</h3>
@@ -180,11 +207,9 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-
-              {/* Feature 3 */}
               <div className="flex gap-4">
                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 border border-orange-100">
-                   <span className="text-xl">🦾</span>
+                   <CheckCircle2 className="w-6 h-6" />
                  </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Robotic Precision</h3>
@@ -193,16 +218,14 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-
-              {/* Feature 4 */}
               <div className="flex gap-4">
                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-green-600 border border-green-100">
-                   <span className="text-xl">🔄</span>
+                   <MonitorPlay className="w-6 h-6" />
                  </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Zero Downtime</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    The "Robotics-as-a-Service" model covers hardware, software, and maintenance, ensuring you are always operational without upfront capital expenditure risk.
+                    The "Robotics-as-a-Service" model covers hardware, software, and maintenance, ensuring you are always operational without upfront CapEx risk.
                   </p>
                 </div>
               </div>
@@ -210,7 +233,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* --- BENTO GRID VALUE PROP SECTION (Already has Grid) --- */}
       <section id="whyus" className="relative py-24 lg:py-32 overflow-hidden bg-white">
         {/* Background Pattern */}
@@ -348,7 +370,7 @@ export default function Home() {
                       <Building2 size={20} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 text-sm">Industry Backed</h4>
+                      <h4 className="font-bold text-gray-900 text-sm">Industry Network</h4>
                       <p className="text-xs text-gray-500 mt-1">Supported by UFA & Alberta Beef Association</p>
                     </div>
                   </div>
@@ -386,7 +408,9 @@ export default function Home() {
                            "We aren't just building robots; we are building the future workforce of the feedlot. Reliable, safe, and always operational."
                          </p>
                          <div className="mt-4 flex items-center gap-3">
-                            <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-xs font-bold text-gray-500">EH</div>
+                             <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200 border border-gray-200">
+                                <img src="/potraits/emilio.jpeg" alt="EH" className="w-full h-full object-cover" />
+                            </div>
                             <span className="text-xs font-bold text-gray-900">Emilio Hurtado, CEO</span>
                          </div>
                       </div>
@@ -441,7 +465,7 @@ export default function Home() {
               <h3 className="text-xl font-bold text-gray-900">Emilio Hurtado</h3>
               <p className="text-green-800 font-medium mb-3">Co-Founder & CEO</p>
               <p className="text-gray-500 text-sm">
-                AI & Neuroscience background. Leading the vision for automated cattle care.
+                Combines a background in AI & Neuroscience with hands-on feedlot experience to lead the vision for automated cattle care.
               </p>
             </div>
 
@@ -465,7 +489,7 @@ export default function Home() {
               <h3 className="text-xl font-bold text-gray-900">Brendon Penner</h3>
               <p className="text-green-800 font-medium mb-3">COO</p>
               <p className="text-gray-500 text-sm">
-                 Leadership-driven operations expert dedicated to team success and execution excellence.
+                 Leadership-driven operations expert with experience managing the Hub for Neuroengineering Solutions. Dedicated to team success and execution excellence.
               </p>
             </div>
 
@@ -487,7 +511,7 @@ export default function Home() {
                 <h3 className="text-base font-bold text-gray-900">Dr. Hardeep Ryait</h3>
                 <p className="text-green-600 text-xs font-bold uppercase tracking-wide mb-2">Technical Mentor</p>
                 <p className="text-gray-500 text-xs leading-relaxed">
-                  Expert guidance on technical architecture and research direction.
+                  Expert engineering guidance on technical architecture and research direction.
                 </p>
               </div>
 
@@ -511,7 +535,7 @@ export default function Home() {
                 <h3 className="text-base font-bold text-gray-900">Cristo Hurtado</h3>
                 <p className="text-green-600 text-xs font-bold uppercase tracking-wide mb-2">Industry Advisor</p>
                 <p className="text-gray-500 text-xs leading-relaxed">
-                  Deep agricultural industry insights and operational guidance.
+                  Deep feedlot industry insights and operational guidance.
                 </p>
               </div>
 
@@ -539,7 +563,7 @@ export default function Home() {
                 <span className="text-green-800">your feedlot?</span>
               </h2>
               <p className="text-lg text-gray-600 mb-12 leading-relaxed">
-                Whether you are interested in piloting our technology, investing in the future of ag-tech, or just want to learn more, we want to hear from you. We are currently accepting partners for our 2025 pilot program in Alberta.
+                Whether you are interested in piloting our technology, investing in the future of ag-tech, or just want to learn more, we want to hear from you. We are currently accepting partners for our pilot program in Alberta.
               </p>
               
               <div className="space-y-8">
@@ -679,15 +703,13 @@ export default function Home() {
             </div>
 
             {/* Col 4: Legal/Status */}
-            <div>
+           <div>
               <h4 className="text-white font-semibold mb-6">Legal</h4>
               <ul className="space-y-4 text-sm">
-                <li><a href="#" className="hover:text-green-400 transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-green-400 transition-colors">Terms of Service</a></li>
+                <li><a href="/privacy" className="hover:text-green-400 transition-colors">Privacy Policy</a></li>
+                <li><a href="/terms" className="hover:text-green-400 transition-colors">Terms of Service</a></li>
               </ul>
-        
             </div>
-
           </div>
 
           <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
