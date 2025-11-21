@@ -411,8 +411,7 @@ export default function Home() {
       </section>
 
 
-
-      {/* Team Section WITH GRID */}
+{/* Team Section */}
       <section id="team" className="relative py-20 bg-white overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 z-0 opacity-[0.03]" 
@@ -428,7 +427,8 @@ export default function Home() {
             Bringing together expertise in Computer Science, Neuroscience, and Robotics to transform agriculture.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Core Team Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
             
             {/* Team Member 1 */}
             <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
@@ -450,26 +450,67 @@ export default function Home() {
               <h3 className="text-xl font-bold text-gray-900">Chandra Suryadevara</h3>
               <p className="text-blue-600 font-medium mb-3">Co-Founder & CTO</p>
               <p className="text-gray-500 text-sm">
-                Specializing in Robotics and Hardware integration for rugged environments.
+                Specializing in Software-Hardware integration, robotics systems, and software architecture.
               </p>
             </div>
 
-            {/* Team Member 3
+            {/* Team Member 3 */}
             <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
               <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden">
                  <span className="w-full h-full flex items-center justify-center text-gray-400 text-4xl">👤</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Partner Name</h3>
-              <p className="text-blue-600 font-medium mb-3">Lead Engineer</p>
+              <h3 className="text-xl font-bold text-gray-900">Brendon Penner</h3>
+              <p className="text-blue-600 font-medium mb-3">COO</p>
               <p className="text-gray-500 text-sm">
-                Expertise in AI agents and simulation environments.
+                 Extensive management experience leading high-performance teams and scaling organizational operations.
               </p>
-            </div> */}
+            </div>
+
+          </div>
+
+          {/* Advisors Section */}
+          <h3 className="text-2xl font-bold text-gray-900 mb-8">Mentors & Advisors</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+             
+             {/* Advisor 1 */}
+             <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
+              <div className="w-24 h-24 bg-blue-50 rounded-full mx-auto mb-6 flex items-center justify-center text-blue-600 border border-blue-100">
+                 <GraduationCap size={32} />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900">Dr. Hardeep Ryait</h3>
+              <p className="text-gray-500 font-medium mb-2 text-sm">Technical Mentor & Facilitator</p>
+              <p className="text-gray-400 text-xs">
+                 Providing expert guidance on technical architecture and research direction.
+              </p>
+            </div>
+
+            {/* Advisor 2 */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
+              <div className="w-24 h-24 bg-purple-50 rounded-full mx-auto mb-6 flex items-center justify-center text-purple-600 border border-purple-100">
+                 <Target size={32} />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900">Dr. Sydney Shapiro</h3>
+              <p className="text-gray-500 font-medium mb-2 text-sm">Business Advisor</p>
+              <p className="text-gray-400 text-xs">
+                 Strategic business direction and growth mentorship for scaling deep-tech ventures.
+              </p>
+            </div>
+
+            {/* Advisor 3 */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
+              <div className="w-24 h-24 bg-green-50 rounded-full mx-auto mb-6 flex items-center justify-center text-green-600 border border-green-100">
+                 <Building2 size={32} />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900">Cristo Hurtado</h3>
+              <p className="text-gray-500 font-medium mb-2 text-sm">Industry Advisor</p>
+              <p className="text-gray-400 text-xs">
+                 Deep agricultural industry insights and operational guidance for feedlot integration.
+              </p>
+            </div>
 
           </div>
         </div>
       </section>
-
        <section id="contact" className="relative py-24 bg-white overflow-hidden border-t border-gray-100">
         {/* Background Pattern */}
         <div className="absolute inset-0 z-0 opacity-[0.03]" 
