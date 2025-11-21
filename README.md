@@ -1,7 +1,6 @@
-````markdown
 # Huroca – Autonomous Precision Vaccination
 
-Welcome to the official website repository for **Huroca**, a robotics startup based in Lethbridge, Alberta, transforming the cattle industry through automated vaccination systems.
+Welcome to the official website repository for **Huroca**, a robotics startup based in Lethbridge, Alberta, revolutionizing the cattle industry with automated vaccination systems.
 
 This project is built with **Next.js 14 (App Router)**, **Tailwind CSS**, and **Spline 3D**.
 
@@ -20,16 +19,17 @@ This project is built with **Next.js 14 (App Router)**, **Tailwind CSS**, and **
 
 ## 🚀 Getting Started
 
-Follow these steps to run the project locally.
+Follow these steps to get the project running locally.
 
 ### 1. Prerequisites
 
-- Node.js v18 or higher  
-- pnpm installed globally:
+Ensure you have the following installed:
+
+- **Node.js v18 or higher**
+- **pnpm** (install globally if needed):
 
 ```bash
 npm install -g pnpm
-````
 
 ### 2. Installation
 
