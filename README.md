@@ -132,4 +132,3 @@ Deploying to **Vercel**:
 
 © 2025 Huroca Technologies Inc. All rights reserved.
 
-```
