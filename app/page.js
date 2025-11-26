@@ -112,9 +112,9 @@ export default function Home() {
           {/* Logo Grid */}
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-100 transition-all duration-500">
             {/* Logo 1 */}
-            <div className="w-64 h-32 flex justify-center items-center hover:grayscale-0 transition-all duration-300">
+            {/* <div className="w-64 h-32 flex justify-center items-center hover:grayscale-0 transition-all duration-300">
               <img src="/UFA.png" alt="Supporter 1" className="h-full w-auto object-contain" />
-            </div>
+            </div> */}
 
             {/* Logo 2 */}
             <div className="w-80 h-32 flex justify-center items-center hover:grayscale-0 transition-all duration-300">
