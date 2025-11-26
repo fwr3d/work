@@ -1,12 +1,13 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./Navbar"; // Importing the smart navbar from the same folder
+import Navbar from "./Navbar"; 
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
-// --- UPDATED METADATA FOR GOOGLE ---
+
 export const metadata = {
-  metadataBase: new URL('https://hurocatech.com'), // Change this to your actual domain if different
+  metadataBase: new URL('https://hurocatech.com'),
   title: {
     default: "Huroca",
     template: "%s | Huroca"
