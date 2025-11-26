@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import { 
   Target, ShieldCheck, Heart, Users, Database, 
   Cpu, Eye, MonitorPlay, CheckCircle2, 
-  MapPin, Mail, Building2, GraduationCap, Award
+  MapPin, Mail, Building2, GraduationCap, Award,Loader2
 } from 'lucide-react';
 
 // Lazy load Spline (SSR false)
@@ -21,6 +21,7 @@ export default function Home() {
   const [isSplineLoaded, setIsSplineLoaded] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(true); 
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const techImages = ["/SIM.png", "/SIM2.png"]; 
 
@@ -44,6 +45,7 @@ export default function Home() {
 
   async function handleSubmit(event) {
     event.preventDefault(); 
+    setIsSubmitting(true);
     const formData = new FormData(event.target);
 
     try {
@@ -56,9 +58,11 @@ export default function Home() {
       if (response.ok) {
         router.push('/thank-you'); 
       } else {
+        setIsSubmitting(false);
         alert("Oops! There was a problem submitting your form");
       }
     } catch (error) {
+      setIsSubmitting(false);
       alert("Error submitting form");
     }
   }
@@ -637,11 +641,19 @@ export default function Home() {
                   ></textarea>
                 </div>
 
-                <button
+               <button
                   type="submit"
-                  className="w-full bg-green-900 text-white font-bold py-4 px-6 rounded-xl hover:bg-green-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-green-900/20"
+                  disabled={isSubmitting}
+                  className={`w-full bg-green-900 text-white font-bold py-4 px-6 rounded-xl hover:bg-green-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-green-900/20 flex justify-center items-center gap-2 ${isSubmitting ? 'opacity-70 cursor-wait' : ''}`}
                 >
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="animate-spin" size={20} />
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Message"
+                  )}
                 </button>
               </form>
             </div>
