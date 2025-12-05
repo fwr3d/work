@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import { 
   Target, ShieldCheck, Heart, Users, Database, 
   Cpu, Eye, MonitorPlay, CheckCircle2, 
-  MapPin, Mail, Building2, GraduationCap, Award,Loader2
+  MapPin, Mail, Building2, GraduationCap, Award,Loader2, Syringe
 } from 'lucide-react';
 
 // Lazy load Spline (SSR false)
@@ -23,7 +23,7 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(true); 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const techImages = ["/SIM.png", "/SIM2.png"]; 
+  const techImages = ["/SIM.png", "/SIM2.png","/SIM3.jpeg"]; 
 
   // 1. Detect Screen Size to Disable Spline on Mobile
   useEffect(() => {
@@ -86,8 +86,8 @@ export default function Home() {
         {/* Content Overlay */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left pointer-events-none w-full">
            <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl mb-6 drop-shadow-sm">
-            Autonomous  <br />
-            <span className="text-green-700">Precision Vaccinations</span>
+            Field Ready Robotics <br />
+            <span className="text-green-700">For Any Environment</span>
           </h1>
              <p className="mt-4 text-xl text-gray-600 max-w-2xl mb-10 font-medium">
             Huroca combines advanced robotics and computer vision to automate agricultural processes.
@@ -104,63 +104,73 @@ export default function Home() {
 
         <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-white to-transparent z-10"></div>
       </section>
-
+      
+      
       {/* Supported By Section */}
       <section className="py-10 bg-white border-b border-gray-100">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
           <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
-            Industry and Academic Network
+            Our Network
           </p>
           
-          {/* Logo Grid - Converted to Next/Image */}
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-100 transition-all duration-500">
-            
+
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-40 opacity-100 transition-all duration-500">
+
             <div className="w-80 h-32 relative hover:grayscale-0 transition-all duration-300">
                <Image 
                   src="/HUB.png" 
                   alt="Hub for Neuroengineering Solutions" 
                   fill 
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, 320px"
+                  sizes="(max-width: 768px) 320px, 320px"
                />
             </div>
-            
+
             <div className="w-64 h-32 relative hover:grayscale-0 transition-all duration-300">
                <Image 
                   src="/ACFA.png" 
                   alt="Alberta Cattle Feeders Association" 
                   fill 
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, 256px"
+                  sizes="(max-width: 768px) 256px, 256px"
                />
             </div>
             
-            <div className="w-64 h-32 relative hover:grayscale-0 transition-all duration-300">
+            <div className="w-80 h-32 relative hover:grayscale-0 transition-all duration-300">
                <Image 
                   src="/UOFL_Horizontal.png" 
                   alt="University of Lethbridge" 
                   fill 
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, 256px"
+                  sizes="(max-width: 768px) 256px, 320px"
                />
             </div>
+
           </div>
         </div>
       </section>
       
-       <section id="technology" className="relative py-30 bg-white border-t border-gray-100 overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-[0.03]" 
-             style={{ 
-               backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
-               backgroundSize: '40px 40px' 
-             }}>
-        </div>
+     <section id="technology" className="relative py-30 bg-white border-t border-gray-100 overflow-hidden">
+      <div className="absolute inset-0 z-0 opacity-[0.03]" 
+          style={{ 
+            backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
+            backgroundSize: '40px 40px' 
+          }}>
+      </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="mb-16 text-center md:text-left">
+  <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <div className="mb-16 text-center md:text-left">
+      
+      {/* --- NEW SECTION: Project Label --- */}
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-semibold mb-6">
+        <Syringe className="w-4 h-4" />
+        <span className="uppercase tracking-wide">Automated Injection Project</span>
+      </div>
+              
+    
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Validated in <span className="text-green-700">Simulation.</span> <br />
-              Deployed in Reality.
+              Validated in <span className="text-green-700">Simulation</span> <br />
+              Deployed in <span className="text-green-700">Reality</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl">
                Huroca utilizes NVIDIA Isaac Sim technology to validate every movement before it happens in the real world. We bridge the gap between synthetic training and physical execution.
@@ -214,7 +224,7 @@ export default function Home() {
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">AI-Driven Perception</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Our system uses Mask R-CNN (Detectron2) to identify the perfect injection site on the neck musculature instantly.
+                    Our system uses Artificial Intelligence to identify the perfect injection site on the neck musculature instantly.
                   </p>
                 </div>
               </div>
@@ -245,7 +255,7 @@ export default function Home() {
                    <MonitorPlay className="w-10 h-10" />
                  </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Zero Downtime</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Robotics as a Service</h3>
                   <p className="text-gray-600 leading-relaxed">
                     The "Robotics-as-a-Service" model covers hardware, software, and maintenance, ensuring you are always operational without upfront CapEx risk.
                   </p>
@@ -266,7 +276,10 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-          
+           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-semibold mb-6">
+        <Syringe className="w-4 h-4" />
+        <span className="uppercase tracking-wide">Automated Injection Project</span>
+      </div>
           <div className="max-w-3xl mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-[1.1] mb-6">
               Replacing manual risk <br />
@@ -274,7 +287,7 @@ export default function Home() {
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed border-l-4 border-blue-100 pl-6">
               Huroca brings industrial robotics and computer vision to the feedlot,
-              delivering safer, faster, and perfectly accurate injections every single time.
+              delivering safer, faster, and perfectly accurate injections.
             </p>
           </div>
 
@@ -285,13 +298,12 @@ export default function Home() {
               </div>
               <div className="relative z-10">
                 <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-blue-600 group-hover:scale-110 transition-transform">
-                  <Target size={28} />
+                  <Users size={28} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Risk-Free Precision</h3>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  Manual injections are dangerous and inconsistent. Huroca delivers perfect,
-                  repeatable accuracy eliminating site lesions and ensuring exact dosing protocols.
-                </p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Operational Efficiency</h3>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Automates a labour-intensive and repetitive task, allowing for labour to be directed elsewhere
+              </p>
               </div>
             </div>
 
@@ -301,7 +313,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Safer Workplaces</h3>
               <p className="text-gray-600 leading-relaxed">
-                Automation removes staff from the “line of fire,” drastically reducing injuries, liability exposure, and insurance costs.
+                Automation removes staff from the line of fire, reducing injuries, liability and exposure
               </p>
             </div>
 
@@ -311,18 +323,19 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">Animal Welfare</h3>
               <p className="text-gray-500 text-sm">
-                Touchless vision systems lower handling stress, reducing dark-cutting beef risks.
+                Reliable vision system reduces the risk of injury to the animal
               </p>
             </div>
 
             <div className="col-span-1 md:col-span-3 lg:col-span-4 group p-8 bg-white rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-4 text-amber-600">
-                <Users size={24} />
+                <Target size={24} />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Operational Efficiency</h3>
-              <p className="text-gray-500 text-sm">
-                Solves staffing shortages so your crew can apply their expertise where it matters most
-              </p>
+        
+                            <h3 className="text-lg font-bold text-gray-900 mb-2">  Reliability</h3>
+                <p className="text-gray-500 text-sm">
+                  Manual injections are dangerous and inconsistent. Huroca delivers repeatable accuracy.
+                       </p>
             </div>
 
             <div className="col-span-1 md:col-span-6 lg:col-span-4 group p-8 bg-white rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
@@ -332,7 +345,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">Traceability</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">
-                  Automated logging of animal ID, dosage, and timestamp. 100% accurate records.
+                  Automated logging of animal ID, dosage, and timestamp for accurate records.
                 </p>
               </div>
             </div>
@@ -379,7 +392,7 @@ export default function Home() {
                       <Building2 size={40} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 text-lg">Industry Network</h4>
+                      <h4 className="font-bold text-gray-900 text-lg">Letters of Support</h4>
                       <p className="text-sm text-gray-500 mt-1"> UFA & Alberta Cattle Feeders Association</p>
                     </div>
                   </div>
@@ -412,11 +425,11 @@ export default function Home() {
                       
                       <div className="bg-gray-50 rounded-xl p-6">
                          <p className="text-gray-600 italic text-lg leading-relaxed">
-                           "We aren't just building robots; we are building the future workforce of the feedlot. Reliable, safe, and always operational."
+                           "We aren't just building robots; we are building the future workforce of agriculture. Reliable, safe, and always operational."
                          </p>
                          <div className="mt-4 flex items-center gap-3">
                              {/* Small Quote Portrait - Converted */}
-                             <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200 border border-gray-200 relative">
+                             <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-200 border border-gray-200 relative">
                                 <Image 
                                   src="/potraits/emilio.jpeg" 
                                   alt="Emilio Hurtado" 
@@ -462,7 +475,7 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet the Team</h2>
           <p className="text-gray-500 mb-12 max-w-2xl mx-auto">
-            Bringing together expertise in Computer Science, Neuroscience, and Robotics to transform agriculture.
+            Bringing together expertise in Computer Science, Neuroscience, Agriculture and Robotics to transform the future of Industry.
           </p>
           
           {/* Core Team Grid - Converted to Next/Image */}
@@ -560,8 +573,8 @@ export default function Home() {
             {/* Left Col: Info & CTA */}
             <div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Ready to automate <br/> 
-                <span className="text-green-700">your feedlot?</span>
+                Ready to replace repetition with  <br/> 
+                <span className="text-green-700">Reliability?</span>
               </h2>
               <p className="text-lg text-gray-600 mb-12 leading-relaxed">
                 Whether you are interested in piloting our technology, investing in the future of ag-tech, or just want to learn more, we want to hear from you. We are currently accepting partners for our pilot program in Alberta.

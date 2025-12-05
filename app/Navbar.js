@@ -39,16 +39,16 @@ export default function Navbar() {
           
           {/* DESKTOP Navigation (Hidden on mobile 'md' and smaller) */}
           <div className="hidden md:flex md:items-center md:space-x-8">
-            <Link href={getLink("technology")} className="text-gray-600 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium">
+            <Link href={getLink("technology")} className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
               Our Technology
             </Link>
-            <Link href={getLink("whyus")} className="text-gray-600 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium">
+            <Link href={getLink("whyus")} className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
               Why Choose Us
             </Link>
-            <Link href={getLink("about")} className="text-gray-600 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium">
+            <Link href={getLink("about")} className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
               About Us
             </Link>
-            <Link href={getLink("team")} className="text-gray-600 hover:text-blue-900 px-3 py-2 rounded-md text-sm font-medium">
+            <Link href={getLink("team")} className="text-gray-600 hover:text-green-900 px-3 py-2 rounded-md text-sm font-medium">
               Our Team
             </Link>
             <Link 
@@ -78,28 +78,28 @@ export default function Navbar() {
             <Link 
               href={getLink("technology")} 
               onClick={handleLinkClick}
-              className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-md"
+              className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-green-900 hover:bg-gray-50 rounded-md"
             >
               Our Technology
             </Link>
             <Link 
               href={getLink("whyus")} 
               onClick={handleLinkClick}
-              className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-md"
+              className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-green-900 hover:bg-gray-50 rounded-md"
             >
               Why Choose Us
             </Link>
             <Link 
               href={getLink("about")} 
               onClick={handleLinkClick}
-              className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-md"
+              className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-green-900 hover:bg-gray-50 rounded-md"
             >
               About Us
             </Link>
             <Link 
               href={getLink("team")} 
               onClick={handleLinkClick}
-              className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-md"
+              className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-green-900 hover:bg-gray-50 rounded-md"
             >
               Our Team
             </Link>
