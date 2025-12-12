@@ -71,7 +71,7 @@ export default function Home() {
     <main className="flex flex-col min-h-screen">
       
       {/* HERO SECTION */}
-      <section id="home" className="relative h-[70vh] w-full flex items-center justify-center bg-gray-50 overflow-hidden">
+      <section id="home" className="relative h-[70vh] w-full flex items-center justify-center bg-gray-100 overflow-hidden">
         
         {/* Only render Spline if NOT mobile */}
         {!isMobile && (
@@ -109,7 +109,7 @@ export default function Home() {
       {/* Supported By Section */}
       <section className="py-10 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
+          <p className="text-md font-semibold text-gray-500 uppercase tracking-wider mb-6">
             Our Network
           </p>
           
@@ -150,7 +150,7 @@ export default function Home() {
         </div>
       </section>
       
-     <section id="technology" className="relative py-30 bg-white border-t border-gray-100 overflow-hidden">
+     <section id="technology" className="relative py-25 bg-white border-t border-gray-100 overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-[0.03]" 
           style={{ 
             backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
@@ -354,7 +354,7 @@ export default function Home() {
       </section>
 
       {/* ABOUT SECTION */}
-      <section id="about" className="py-24 bg-white border-t border-gray-100 relative overflow-hidden">
+      <section id="about" className="py-30 bg-white border-t border-gray-100 relative overflow-hidden">
          <div className="absolute inset-0 z-0 opacity-[0.03]" 
              style={{ 
                backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
@@ -464,7 +464,7 @@ export default function Home() {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="relative py-20 bg-white overflow-hidden">
+      <section id="team" className="relative py-25 bg-white overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-[0.03]" 
              style={{ 
                backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
@@ -479,10 +479,10 @@ export default function Home() {
           </p>
           
           {/* Core Team Grid - Converted to Next/Image */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div className="bg-white p-12 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
               <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden relative">
-                 <Image src="/potraits/emilio.jpeg" alt="Emilio Hurtado" fill className="object-cover" />
+                 <Image src="/potraits/emilio-2.jpeg" alt="Emilio Hurtado" fill className="object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Emilio Hurtado</h3>
               <p className="text-green-700 font-medium mb-3">Co-Founder & CEO</p>
@@ -491,34 +491,56 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
+            <div className="bg-white p-12 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
               <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden relative">
                  <Image src="/potraits/chandra.jpg" alt="Chandra Suryadevara" fill className="object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Chandra Suryadevara</h3>
               <p className="text-green-700 font-medium mb-3">Co-Founder & CTO</p>
               <p className="text-gray-500 text-sm">
-                Specializing in Software-Hardware integration, robotics systems, and software architecture.
+                Specializing in advanced computer science, Software-Hardware integration and innovative robotics solutions.
               </p>
             </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
+            <div className="bg-white p-12 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
+              <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden relative">
+                 <Image src="/potraits/naveen.jpg" alt="Naveen Kumar Vadlamudi" fill className="object-cover" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Naveen Vadlamudi</h3>
+              <p className="text-green-700 font-medium mb-3">COO</p>
+              <p className="text-gray-500 text-sm">
+                 Experienced leader uniting technical vision with organizational management to optimize company performance.
+              </p>
+            </div>
+            <div className="bg-white p-12 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
               <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden relative">
                  <Image src="/potraits/brendon.png" alt="Brendon Penner" fill className="object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Brendon Penner</h3>
-              <p className="text-green-700 font-medium mb-3">COO</p>
+              <p className="text-green-700 font-medium mb-3">CFO</p>
               <p className="text-gray-500 text-sm">
-                 Leadership-driven operations expert with experience managing the Hub for Neuroengineering Solutions. Dedicated to team success and execution excellence.
+                 Financial leader with Neuroengineering Hub management experience, delivering strategic guidance and operational excellence.
               </p>
             </div>
+            </div>
           </div>
+          </section>
+             <section id="mentors" className="relative bg-white overflow-hidden">
+              <div className="absolute inset-0 z-0 opacity-[0.03]" 
+             style={{ 
+               backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
+               backgroundSize: '40px 40px' 
+             }}>
+        </div>
 
-          <div className="max-w-5xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 relative inline-block">
-              Mentors & Advisors
-              <span className="absolute -bottom-2 left-0 right-0 h-1 bg-green-100 rounded-full"></span>
-            </h3>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mentors & Advisors</h2>
+        <p className="text-gray-500 mb-12 max-w-2xl mx-auto">
+              Bridging the gap between academic innovation and industry reality. 
+              Our advisory board combines deep research in Computer Science and Business with 
+              practical insights from the feedlot sector, ensuring our technology is not just 
+              theoretically sound, but built for the real world.
+            </p>
+          
             
             {/* Advisors - Converted to Next/Image */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -555,11 +577,11 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </div>
+
         </div>
       </section>
 
-       <section id="contact" className="relative py-24 bg-white overflow-hidden border-t border-gray-100">
+       <section id="contact" className="relative py-40 bg-white overflow-hidden border-t border-gray-100">
         <div className="absolute inset-0 z-0 opacity-[0.03]" 
              style={{ 
                backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
