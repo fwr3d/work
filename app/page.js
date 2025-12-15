@@ -248,14 +248,14 @@ export default function Home() {
                       </div>
                       
                       <div className="bg-gray-50 rounded-xl p-6">
-                         <p className="text-gray-600 italic text-lg leading-relaxed">
+                         <p className="text-gray-700 italic text-lg leading-relaxed">
                            "We aren't just building robots; we are building the future workforce of agriculture. Reliable, safe, and always operational."
                          </p>
                          <div className="mt-4 flex items-center gap-3">
                              {/* Small Quote Portrait - Converted */}
-                             <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-200 border border-gray-200 relative">
+                             <div className="w-18 h-18 rounded-full overflow-hidden bg-gray-200 border border-gray-200 relative">
                                 <Image 
-                                  src="/potraits/emilio.jpeg" 
+                                  src="/potraits/emilio-3.jpeg" 
                                   alt="Emilio Hurtado" 
                                   fill 
                                   className="object-cover" 
