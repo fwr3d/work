@@ -330,7 +330,7 @@ export default function Home() {
                  <Image src="/potraits/naveen.jpg" alt="Naveen Kumar Vadlamudi" fill className="object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Naveen Vadlamudi</h3>
-              <p className="text-green-700 font-medium mb-3">COO</p>
+              <p className="text-green-700 font-medium mb-3">Co-Founder & COO</p>
               <p className="text-gray-500 text-sm">
                  Experienced leader uniting technical vision with organizational management to optimize company performance.
               </p>
