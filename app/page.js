@@ -45,7 +45,7 @@ export default function Home() {
       {/* Supported By Section */}
       <section className="py-10 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-          <p className="text-md font-semibold text-gray-500 uppercase tracking-wider mb-6">
+          <p className="text-md font-semibold text-gray-700 uppercase tracking-wider mb-6">
             Our Network
           </p>
           
@@ -146,7 +146,7 @@ export default function Home() {
                 <Heart size={24} />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">Animal Welfare</h3>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-700 text-sm">
                 Reliable vision system reduces the risk of injury to the animal
               </p>
             </div>
@@ -157,7 +157,7 @@ export default function Home() {
               </div>
         
                             <h3 className="text-lg font-bold text-gray-900 mb-2">  Reliability</h3>
-                <p className="text-gray-500 text-sm">
+                <p className="text-gray-700 text-sm">
                   Manual injections are dangerous and inconsistent. Huroca delivers repeatable accuracy.
                        </p>
             </div>
@@ -168,7 +168,7 @@ export default function Home() {
                   <Database size={24} />
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">Traceability</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
+                <p className="text-gray-700 text-sm leading-relaxed">
                   Automated logging of animal ID, dosage, and timestamp for accurate records.
                 </p>
               </div>
@@ -217,7 +217,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900 text-lg">Letters of Support</h4>
-                      <p className="text-sm text-gray-500 mt-1"> UFA & Alberta Cattle Feeders Association</p>
+                      <p className="text-sm text-gray-700 mt-1"> UFA & Alberta Cattle Feeders Association</p>
                     </div>
                   </div>
                   <div className="flex gap-4">
@@ -226,7 +226,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900 text-lg">Research Driven</h4>
-                      <p className="text-sm text-gray-500 mt-1">Univ. of Lethbridge & Hub for Neuroengineering Solutions</p>
+                      <p className="text-sm text-gray-700 mt-1">Univ. of Lethbridge & Hub for Neuroengineering Solutions</p>
                     </div>
                   </div>
                 </div>
@@ -243,7 +243,7 @@ export default function Home() {
                          </div>
                          <div>
                             <h3 className="font-bold text-xl text-gray-900">Made for the Industry</h3>
-                            <p className="text-sm text-gray-500">Solving real problems for real producers.</p>
+                            <p className="text-sm text-gray-700">Solving real problems for real producers.</p>
                          </div>
                       </div>
                       
@@ -298,7 +298,7 @@ export default function Home() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet the Team</h2>
-          <p className="text-gray-500 mb-12 max-w-2xl mx-auto">
+          <p className="text-gray-700 mb-12 max-w-2xl mx-auto">
             Bringing together expertise in Computer Science, Neuroscience, Agriculture and Robotics to transform the future of Industry.
           </p>
           
@@ -309,8 +309,8 @@ export default function Home() {
                  <Image src="/potraits/emilio-2.jpeg" alt="Emilio Hurtado" fill className="object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Emilio Hurtado</h3>
-              <p className="text-green-700 font-medium mb-3">Co-Founder & CEO</p>
-              <p className="text-gray-500 text-sm">
+              <p className="text-green-700 font-bold mb-3">Co-Founder & CEO</p>
+              <p className="text-gray-700 text-sm">
                 Combines a background in AI & Neuroscience with hands-on feedlot experience to lead the vision for automated cattle care.
               </p>
             </div>
@@ -320,8 +320,8 @@ export default function Home() {
                  <Image src="/potraits/chandra.jpg" alt="Chandra Suryadevara" fill className="object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Chandra Suryadevara</h3>
-              <p className="text-green-700 font-medium mb-3">Co-Founder & CTO</p>
-              <p className="text-gray-500 text-sm">
+              <p className="text-green-700 font-bold mb-3">Co-Founder & CTO</p>
+              <p className="text-gray-700 text-sm">
                 Specializing in advanced computer science, Software-Hardware integration and innovative robotics solutions.
               </p>
             </div>
@@ -330,8 +330,8 @@ export default function Home() {
                  <Image src="/potraits/naveen.jpg" alt="Naveen Kumar Vadlamudi" fill className="object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Naveen Vadlamudi</h3>
-              <p className="text-green-700 font-medium mb-3">Co-Founder & COO</p>
-              <p className="text-gray-500 text-sm">
+              <p className="text-green-700 font-bold mb-3">Co-Founder & COO</p>
+              <p className="text-gray-700 text-sm">
                  Experienced leader uniting technical vision with organizational management to optimize company performance.
               </p>
             </div>
@@ -340,8 +340,8 @@ export default function Home() {
                  <Image src="/potraits/brendon.png" alt="Brendon Penner" fill className="object-cover" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Brendon Penner</h3>
-              <p className="text-green-700 font-medium mb-3">CFO</p>
-              <p className="text-gray-500 text-sm">
+              <p className="text-green-700 font-bold mb-3">CFO</p>
+              <p className="text-gray-700 text-sm">
                  Financial leader with Neuroengineering Hub management experience, delivering strategic guidance and operational excellence.
               </p>
             </div>
@@ -358,7 +358,7 @@ export default function Home() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mentors & Advisors</h2>
-        <p className="text-gray-500 mb-12 max-w-2xl mx-auto">
+        <p className="text-gray-700 mb-12 max-w-2xl mx-auto">
               Bridging the gap between academic innovation and industry reality. 
               Our advisory board combines deep research in Computer Science and Business with 
               practical insights from the feedlot sector, ensuring our technology is not just 
@@ -369,34 +369,34 @@ export default function Home() {
             {/* Advisors - Converted to Next/Image */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-blue-100 transition-all">
-                <div className="w-20 h-20 bg-blue-50 rounded-full mx-auto mb-4 overflow-hidden relative border border-blue-100">
+                <div className="w-32 h-32 bg-blue-50 rounded-full mx-auto mb-4 overflow-hidden relative border border-blue-100">
                   <Image src="/potraits/hardeep.jpeg" alt="Dr. Hardeep Ryait" fill className="object-cover" />
                 </div>
-                <h3 className="text-base font-bold text-gray-900">Dr. Hardeep Ryait</h3>
-                <p className="text-green-600 text-xs font-bold uppercase tracking-wide mb-2">Technical Mentor</p>
-                <p className="text-gray-500 text-xs leading-relaxed">
+                <h3 className="text-xl font-bold text-gray-900">Dr. Hardeep Ryait</h3>
+                <p className="text-green-700 text-xs font-bold uppercase tracking-wide mb-2">Technical Mentor</p>
+                <p className="text-gray-700 text-s leading-relaxed">
                   Expert engineering guidance on technical architecture and research direction.
                 </p>
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-purple-100 transition-all">
-                <div className="w-20 h-20 bg-purple-50 rounded-full mx-auto mb-4 overflow-hidden relative border border-purple-100">
+                <div className="w-32 h-32 bg-purple-50 rounded-full mx-auto mb-4 overflow-hidden relative border border-purple-100">
                   <Image src="/potraits/Shapiro.png" alt="Dr. Sydney Shapiro" fill className="object-cover" />
                 </div>
-                <h3 className="text-base font-bold text-gray-900">Dr. Sydney Shapiro</h3>
-                <p className="text-green-600 text-xs font-bold uppercase tracking-wide mb-2">Business Advisor</p>
-                <p className="text-gray-500 text-xs leading-relaxed">
+                <h3 className="text-xl font-bold text-gray-900">Dr. Sydney Shapiro</h3>
+                <p className="text-green-700 text-xs font-bold uppercase tracking-wide mb-2">Business Advisor</p>
+                <p className="text-gray-700 text-s leading-relaxed">
                   Strategic direction and growth mentorship for scaling ventures.
                 </p>
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-green-100 transition-all">
-                <div className="w-20 h-20 bg-green-50 rounded-full mx-auto mb-4 overflow-hidden relative border border-green-100">
+                <div className="w-32 h-32 bg-green-50 rounded-full mx-auto mb-4 overflow-hidden relative border border-green-100">
                   <Image src="/potraits/cristo.jpeg" alt="Cristo Hurtado" fill className="object-cover" />
                 </div>
-                <h3 className="text-base font-bold text-gray-900">Cristo Hurtado</h3>
-                <p className="text-green-600 text-xs font-bold uppercase tracking-wide mb-2">Industry Advisor</p>
-                <p className="text-gray-500 text-xs leading-relaxed">
+                <h3 className="text-xl font-bold text-gray-900">Cristo Hurtado</h3>
+                <p className="text-green-700 text-xs font-bold uppercase tracking-wide mb-2">Industry Advisor</p>
+                <p className="text-gray-700 text-s leading-relaxed">
                   Deep feedlot industry insights and operational guidance.
                 </p>
               </div>
