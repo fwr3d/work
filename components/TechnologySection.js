@@ -1,0 +1,254 @@
+"use client";
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { ChevronLeft, ArrowRight, Eye, Cpu, CheckCircle2, MonitorPlay, Syringe, ScanBarcode } from 'lucide-react';
+
+const getColorClasses = (color) => {
+    const map = {
+      blue:   "bg-blue-50 text-blue-600 border-blue-100",
+      purple: "bg-purple-50 text-purple-600 border-purple-100",
+      orange: "bg-orange-50 text-orange-600 border-orange-100",
+      green:  "bg-green-50 text-green-600 border-green-100",
+      indigo: "bg-indigo-50 text-indigo-600 border-indigo-100",
+      red:    "bg-red-50 text-red-600 border-red-100",
+      gray:   "bg-gray-50 text-gray-600 border-gray-100",
+    };
+    return map[color] || map.blue;
+  };
+
+const PROJECTS = [
+  {
+    id: 'injection',
+    label: 'Automated Injection Project',
+    labelIcon: <Syringe className="w-4 h-4" />,
+    labelColor: 'blue',
+    title: (
+      <>
+        Validated in <span className="text-green-700">Simulation</span> <br />
+        Deployed in <span className="text-green-700">Reality</span>
+      </>
+    ),
+    description: "Huroca utilizes NVIDIA Isaac Sim technology to validate every movement before it happens in the real world. We bridge the gap between synthetic training and physical execution.",
+    images: [
+      "/SIM.png", 
+      "/SIM2.png",
+      "/SIM3.jpeg"
+    ],
+    features: [
+      {
+        icon: <Eye className="w-10 h-10" />,
+        color: "blue",
+        title: "AI-Driven Perception",
+        desc: "Our system uses Artificial Intelligence to identify the perfect injection site on the neck musculature instantly."
+      },
+      {
+        icon: <Cpu className="w-10 h-10" />,
+        color: "purple",
+        title: "Chute Compatible",
+        desc: "Designed as a modular add-on that integrates into your existing standard squeeze chutes without the need to rebuild."
+      },
+      {
+        icon: <CheckCircle2 className="w-10 h-10" />,
+        color: "orange",
+        title: "Robotic Precision",
+        desc: "A 6-DOF robotic arm adjusts to animal variability in real-time, ensuring consistent depth and dosage."
+      },
+      {
+        icon: <MonitorPlay className="w-10 h-10" />,
+        color: "green",
+        title: "Robotics as a Service",
+        desc: "The RaaS model covers hardware, software, and maintenance without upfront CapEx risk."
+      }
+    ]
+  },
+  {
+    id: 'pallet',
+    label: 'Smart Sorting System',
+    labelIcon: <ScanBarcode className="w-4 h-4" />,
+    labelColor: 'indigo',
+    title: (
+      <>
+        High-Speed <span className="text-indigo-700">Analysis</span> <br />
+        Automated <span className="text-indigo-700">Segregation</span>
+      </>
+    ),
+    description: "Our optical flow sorting algorithms process cattle biometrics in milliseconds, routing animals to specific pens based on weight, health status, and market readiness.",
+    images: [
+      "/images/sorting-sim-1.jpg", // Ensure these paths exist or use placeholders
+      "/images/sorting-real-1.jpg"
+    ],
+    features: [
+      {
+        icon: <Eye className="w-10 h-10" />,
+        color: "indigo",
+        title: "Optical Flow Tracking",
+        desc: "Cameras track animal movement speed and gait to detect potential lameness during the sorting process."
+      },
+      {
+        icon: <Cpu className="w-10 h-10" />,
+        color: "red",
+        title: "Instant Gate Control",
+        desc: "Low-latency hydraulic actuators respond in under 200ms to guide animals to the correct pen."
+      },
+      {
+        icon: <CheckCircle2 className="w-10 h-10" />,
+        color: "blue",
+        title: "Weight Integration",
+        desc: "Seamlessly pulls data from existing load bars to make sorting decisions based on daily gain."
+      },
+      {
+        icon: <MonitorPlay className="w-10 h-10" />,
+        color: "gray",
+        title: "Cloud Dashboard",
+        desc: "View sort stats and inventory counts in real-time from the Huroca cloud portal."
+      }
+    ]
+  }
+];
+
+    export default function TechnologySection() {
+        const [currentSlide, setCurrentSlide] = useState(0);
+        const [activeProjIdx, setActiveProjIdx] = useState(0);
+        const [isAnimating, setIsAnimating] = useState(false);
+        const project = PROJECTS[activeProjIdx];
+
+        useEffect(() => {
+            const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % project.images.length);
+            }, 4000);
+            return () => clearInterval(timer);
+        }, [project.images.length, activeProjIdx]);
+        
+        useEffect(() => {
+            setCurrentSlide(0);
+            }, [activeProjIdx]);
+
+        const handleNextProject = () => {
+            if (isAnimating) return;
+            setIsAnimating(true);
+            setTimeout(() => {
+            setActiveProjIdx((prev) => (prev + 1) % PROJECTS.length);
+            setIsAnimating(false);
+            }, 300); 
+        };
+
+        const handlePrevProject = () => {
+            if (isAnimating) return;
+            setIsAnimating(true);
+            setTimeout(() => {
+            setActiveProjIdx((prev) => (prev - 1 + PROJECTS.length) % PROJECTS.length);
+            setIsAnimating(false);
+            }, 300);
+        };
+
+        return(
+
+
+            <section id="technology" className="relative py-25 bg-white border-t border-gray-100 overflow-hidden">
+                <div className="absolute inset-0 z-0 opacity-[0.03]" 
+                    style={{ 
+                        backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
+                        backgroundSize: '40px 40px' 
+                    }}>
+                </div>
+
+                <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+                    
+                    {/* Header with Navigation Controls */}
+                    <div className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                        
+                        {/* Dynamic Text Content */}
+                        <div className={`transition-all duration-300 max-w-3xl ${isAnimating ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+                            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold mb-6 ${getColorClasses(project.labelColor)}`}>
+                                {project.labelIcon}
+                                <span className="uppercase tracking-wide">{project.label}</span>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                            {project.title}
+                            </h2>
+                            <p className="text-xl text-gray-600">
+                            {project.description}
+                            </p>
+                        </div>
+
+                        {/* Navigation Buttons */}
+                        <div className="flex items-center gap-3 shrink-0">
+                            <button 
+                                onClick={handlePrevProject}
+                                className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95"
+                            >
+                            <ChevronLeft className="w-6 h-6 text-gray-600" />
+                            </button>
+                            <span className="text-sm font-medium text-gray-400 tabular-nums">
+                            {activeProjIdx + 1} / {PROJECTS.length}
+                            </span>
+                            <button 
+                                onClick={handleNextProject}
+                                className="w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 transition-all active:scale-95 shadow-lg"
+                            >
+                            <ArrowRight className="w-6 h-6" />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Content Grid (Slideshow + Features) */}
+                    <div className={`grid grid-cols-1 lg:grid-cols-2 gap-24 items-start transition-all duration-500 ${isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+                        
+                        {/* Left Col: Slideshow Container */}
+                        <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 border border-gray-200 group">
+                        <div className="aspect-[4/3] bg-slate-900 relative flex items-center justify-center overflow-hidden">
+
+                            {/* Images Mapped from Current Project */}
+                            {project.images.map((src, index) => (
+                                <div 
+                                key={`${project.id}-img-${index}`} // Unique key forces re-render on project switch
+                                className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${
+                                    index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                                }`}
+                                >
+                                {/* Using simple img for demo if Next/Image paths are tricky, but Next/Image is better */}
+                                <Image 
+                                    src={src}
+                                    alt={`View ${index + 1}`}
+                                    fill
+                                    className="object-contain"
+                                    priority={index === 0} 
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                />
+                                </div>
+                            ))}
+
+                            {/* Navigation Dots */}
+                            <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-2 z-20">
+                                {project.images.map((_, index) => (
+                                <button 
+                                    key={index}
+                                    onClick={() => setCurrentSlide(index)}
+                                    className={`w-2 h-2 rounded-full transition-all ${index === currentSlide ? 'bg-green-500 w-4' : 'bg-white/50 hover:bg-white'}`}
+                                />
+                                ))}
+                            </div>
+                        </div>
+                        </div>
+
+                        {/* Right Col: Dynamic Features List */}
+                        <div className="space-y-8">
+                        {project.features.map((feature, idx) => (
+                            <div key={idx} className="flex gap-4 group">
+                                <div className={`flex-shrink-0 w-20 h-20 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105 ${getColorClasses(feature.color)}`}>
+                                {feature.icon}
+                                </div>
+                                <div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
+                                <p className="text-gray-600 leading-relaxed">
+                                    {feature.desc}
+                                </p>
+                                </div>
+                            </div>
+                        ))}
+                        </div>
+                    </div>
+                    </div>
+                </section>
+        );
+    }

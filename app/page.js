@@ -1,71 +1,15 @@
-"use client";
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react'; 
-import Image from 'next/image'; // Optimized Image Component
-import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import TechnologySection from '@/components/TechnologySection';
+import HeroScene from '@/components/HeroScene';
+import ContactForm from '@/components/ContactForm';
+
 import { 
   Target, ShieldCheck, Heart, Users, Database, 
-  Cpu, Eye, MonitorPlay, CheckCircle2, 
-  MapPin, Mail, Building2, GraduationCap, Award,Loader2, Syringe
+  MapPin, Mail, Building2, GraduationCap, Award, Syringe,
 } from 'lucide-react';
 
-// Lazy load Spline (SSR false)
-const Spline = dynamic(() => import('@splinetool/react-spline'), {
-  ssr: false,
-  loading: () => <div className="h-full w-full bg-gray-50" />, 
-});
 
 export default function Home() {
-  const router = useRouter();
-
-  const [isSplineLoaded, setIsSplineLoaded] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(true); 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const techImages = ["/SIM.png", "/SIM2.png","/SIM3.jpeg"]; 
-
-  // 1. Detect Screen Size to Disable Spline on Mobile
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
-
-  // 2. Slideshow Interval
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % techImages.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [techImages.length]);
-
-  async function handleSubmit(event) {
-    event.preventDefault(); 
-    setIsSubmitting(true);
-    const formData = new FormData(event.target);
-
-    try {
-      const response = await fetch("https://formspree.io/f/mrbjenoe", {
-        method: "POST",
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        router.push('/thank-you'); 
-      } else {
-        setIsSubmitting(false);
-        alert("Oops! There was a problem submitting your form");
-      }
-    } catch (error) {
-      setIsSubmitting(false);
-      alert("Error submitting form");
-    }
-  }
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -73,15 +17,7 @@ export default function Home() {
       {/* HERO SECTION */}
       <section id="home" className="relative h-[70vh] w-full flex items-center justify-center bg-gray-100 overflow-hidden">
         
-        {/* Only render Spline if NOT mobile */}
-        {!isMobile && (
-          <div className={`absolute inset-0 z-0 hidden md:block transition-opacity duration-1000 ease-in-out ${isSplineLoaded ? 'opacity-100' : 'opacity-0'}`}>
-             <Spline 
-               scene="https://prod.spline.design/QkMeddUzFh1r5iQy/scene.splinecode" 
-               onLoad={() => setIsSplineLoaded(true)}
-             />
-          </div>
-        )}
+        <HeroScene />
 
         {/* Content Overlay */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left pointer-events-none w-full">
@@ -150,121 +86,9 @@ export default function Home() {
         </div>
       </section>
       
-     <section id="technology" className="relative py-25 bg-white border-t border-gray-100 overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-[0.03]" 
-          style={{ 
-            backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
-            backgroundSize: '40px 40px' 
-          }}>
-      </div>
+        {/* --- TECHNOLOGY SECTION (Dynamic Slide Window) --- */}
+      <TechnologySection />
 
-  <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-    <div className="mb-16 text-center md:text-left">
-      
-      {/* --- NEW SECTION: Project Label --- */}
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-semibold mb-6">
-        <Syringe className="w-4 h-4" />
-        <span className="uppercase tracking-wide">Automated Injection Project</span>
-      </div>
-              
-    
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Validated in <span className="text-green-700">Simulation</span> <br />
-              Deployed in <span className="text-green-700">Reality</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl">
-               Huroca utilizes NVIDIA Isaac Sim technology to validate every movement before it happens in the real world. We bridge the gap between synthetic training and physical execution.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-            
-            {/* Left Col: Slideshow Container */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 border border-gray-200 group">
-               <div className="aspect-[4/3] bg-slate-900 relative flex items-center justify-center overflow-hidden">
-
-                  {/* Slideshow Images - Converted to Next/Image */}
-                  {techImages.map((src, index) => (
-                    <div 
-                      key={index}
-                      className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${
-                        index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-                      }`}
-                    >
-                      <Image 
-                        src={src}
-                        alt={`Simulation View ${index + 1}`}
-                        fill
-                        className="object-contain"
-                        priority={index === 0} 
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </div>
-                  ))}
-
-                  {/* Navigation Dots */}
-                  <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-2 z-20">
-                    {techImages.map((_, index) => (
-                      <button 
-                        key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={`w-2 h-2 rounded-full transition-all ${index === currentSlide ? 'bg-green-500 w-4' : 'bg-white/50 hover:bg-white'}`}
-                      />
-                    ))}
-                  </div>
-               </div>
-            </div>
-
-            {/* Right Col: Features List */}
-            <div className="space-y-8">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
-                  <Eye className="w-10 h-10" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">AI-Driven Perception</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Our system uses Artificial Intelligence to identify the perfect injection site on the neck musculature instantly.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 border border-purple-100">
-                   <Cpu className="w-10 h-10" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Chute Compatible</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Designed as a modular add-on that integrates into your existing standard squeeze chutes without the need to rebuild your facility.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                 <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 border border-orange-100">
-                   <CheckCircle2 className="w-10 h-10" />
-                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Robotic Precision</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    A 6-DOF robotic arm adjusts to animal variability in real-time, ensuring consistent depth and dosage regardless of animal size.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                 <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-green-50 flex items-center justify-center text-green-600 border border-green-100">
-                   <MonitorPlay className="w-10 h-10" />
-                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Robotics as a Service</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    The "Robotics-as-a-Service" model covers hardware, software, and maintenance, ensuring you are always operational without upfront CapEx risk.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* --- BENTO GRID VALUE PROP SECTION --- */}
       <section id="whyus" className="relative py-24 lg:py-32 overflow-hidden bg-white">
@@ -626,72 +450,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
-            {/* Right Col: Form Card */}
-            <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-gray-200/50 border border-gray-100 p-8 lg:p-10 relative">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h3>
-               <form 
-                  onSubmit={handleSubmit}
-                  className="space-y-5"
-                >
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5 ml-1">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    required
-                    className="w-full px-5 py-3.5 rounded-xl border bg-gray-50 border-gray-200 text-gray-900 focus:bg-white focus:ring-2 focus:ring-green-800 focus:border-transparent outline-none transition-all placeholder-gray-400"
-                    placeholder="John Doe"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5 ml-1">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    required
-                    className="w-full px-5 py-3.5 rounded-xl border bg-gray-50 border-gray-200 text-gray-900 focus:bg-white focus:ring-2 focus:ring-green-800 focus:border-transparent outline-none transition-all placeholder-gray-400"
-                    placeholder="john@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5 ml-1">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    id="message"
-                    rows="4"
-                    required
-                    className="w-full px-5 py-3.5 rounded-xl border bg-gray-50 border-gray-200 text-gray-900 focus:bg-white focus:ring-2 focus:ring-green-800 focus:border-transparent outline-none transition-all placeholder-gray-400"
-                    placeholder="Tell us about your farm or inquiry..."
-                  ></textarea>
-                </div>
-
-               <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`w-full bg-green-900 text-white font-bold py-4 px-6 rounded-xl hover:bg-green-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-green-900/20 flex justify-center items-center gap-2 ${isSubmitting ? 'opacity-70 cursor-wait' : ''}`}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="animate-spin" size={20} />
-                      Sending...
-                    </>
-                  ) : (
-                    "Send Message"
-                  )}
-                </button>
-              </form>
-            </div>
+             <ContactForm />
           </div>
         </div>
       </section>
