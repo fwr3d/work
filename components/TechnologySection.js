@@ -58,7 +58,9 @@ const ComparisonSlider = ({ before, after }) => {
                 fill
                 alt='after Image'
                 className="object-cover"
+                priority={true}
                 draggable={false}
+                sizes="(max-width: 768px) 100vw, 50vw"
             />
 
   
@@ -70,8 +72,10 @@ const ComparisonSlider = ({ before, after }) => {
                     src={before}
                     alt='before image'
                     fill
+                    priority={true}
                     className="object-cover"
                     draggable={false}
+                    sizes="(max-width: 768px) 100vw, 50vw"
                 />
             </div>
 
