@@ -14,7 +14,6 @@ export default function ContactForm() {
     const formData = new FormData(event.target);
 
     try {
-      // Your specific Formspree endpoint
       const response = await fetch("https://formspree.io/f/mrbjenoe", {
         method: "POST",
         body: formData,

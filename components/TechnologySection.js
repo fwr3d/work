@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useRef} from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ArrowRight, Eye, Cpu, CheckCircle2, MonitorPlay, Syringe, ScanBarcode } from 'lucide-react';
+import { ChevronLeft, ArrowRight, Eye, Cpu, CheckCircle2, MonitorPlay, Syringe, ScanBarcode, HandCoins, BookCheck, ShieldPlus, CircleDollarSign, ChevronRight} from 'lucide-react';
 
 const getColorClasses = (color) => {
     const map = {
@@ -9,12 +9,89 @@ const getColorClasses = (color) => {
       purple: "bg-purple-50 text-purple-600 border-purple-100",
       orange: "bg-orange-50 text-orange-600 border-orange-100",
       green:  "bg-green-50 text-green-600 border-green-100",
+      yellow: "bg-yellow-100 text-yellow-600 border-yellow-100",
       indigo: "bg-indigo-50 text-indigo-600 border-indigo-100",
       red:    "bg-red-50 text-red-600 border-red-100",
       gray:   "bg-gray-50 text-gray-600 border-gray-100",
     };
     return map[color] || map.blue;
   };
+
+const ComparisonSlider = ({ before, after }) => {
+    const [sliderPosition, setSliderPosition] = useState(50);
+    const [isDragging, setIsDragging] = useState(false);
+    const containerRef = useRef(null);
+
+    const handleMove = (event) => {
+        if (!isDragging || !containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width));
+        const percent = Math.max(0, Math.min((x / rect.width) * 100, 100));
+        setSliderPosition(percent);
+    };
+
+    // Touch support for mobile
+    const handleTouchMove = (event) => {
+        if (!isDragging || !containerRef.current) return;
+        const touch = event.touches[0];
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = Math.max(0, Math.min(touch.clientX - rect.left, rect.width));
+        const percent = Math.max(0, Math.min((x / rect.width) * 100, 100));
+        setSliderPosition(percent);
+    };
+
+    return (
+        <div 
+            className="w-full h-full relative select-none cursor-ew-resize group" 
+            ref={containerRef}
+            onMouseUp={() => setIsDragging(false)}
+            onMouseLeave={() => setIsDragging(false)}
+            onMouseDown={() => setIsDragging(true)}
+            onMouseMove={handleMove}
+            onTouchStart={() => setIsDragging(true)}
+            onTouchEnd={() => setIsDragging(false)}
+            onTouchMove={handleTouchMove}
+        >
+
+            <Image
+                src={after}
+                fill
+                alt='after Image'
+                className="object-cover"
+                draggable={false}
+            />
+
+  
+            <div
+                className="absolute inset-0 w-full h-full overflow-hidden"
+                style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+            >
+                <Image
+                    src={before}
+                    alt='before image'
+                    fill
+                    className="object-cover"
+                    draggable={false}
+                />
+            </div>
+
+            {/* Slider Handle Line */}
+            <div
+                className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] z-20 pointer-events-none"
+                style={{ left: `${sliderPosition}%` }}
+            >
+                <div className="bg-white absolute rounded-full h-8 w-8 -left-[14px] top-[calc(50%-16px)] flex items-center justify-center shadow-lg text-gray-400">
+                   {/* Tiny arrows icon inside handle */}
+                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18-6-6 6-6"/><path d="m15 6 6 6-6 6"/></svg>
+                </div>
+            </div>
+            
+            {/* Optional Labels */}
+            <div className="absolute top-4 left-4 bg-black/50 text-white text-xs px-2 py-1 rounded backdrop-blur-sm z-10">BEFORE</div>
+            <div className="absolute top-4 right-4 bg-black/50 text-white text-xs px-2 py-1 rounded backdrop-blur-sm z-10">AFTER</div>
+        </div>
+    );
+};
 
 const PROJECTS = [
   {
@@ -63,48 +140,49 @@ const PROJECTS = [
   },
   {
     id: 'pallet',
-    label: 'Smart Sorting System',
+    label: 'Automated Inventory Project',
     labelIcon: <ScanBarcode className="w-4 h-4" />,
     labelColor: 'indigo',
     title: (
       <>
-        High-Speed <span className="text-indigo-700">Analysis</span> <br />
-        Automated <span className="text-indigo-700">Segregation</span>
+        Real-time <span className="text-indigo-700">Detection</span> <br />
+        Automated <span className="text-indigo-700">Inventory</span>
       </>
     ),
-    description: "Our optical flow sorting algorithms process cattle biometrics in milliseconds, routing animals to specific pens based on weight, health status, and market readiness.",
+    description: "Computer vision inventory systems replace manual counting with automated, continuous monitoring, reducing safety stock while providing visual proof for security and logistics.",
     images: [
-      "/images/sorting-sim-1.jpg", // Ensure these paths exist or use placeholders
-      "/images/sorting-real-1.jpg"
+      "/before.jpg", // Ensure these paths exist or use placeholders
+      "/after-v2.png"
     ],
     features: [
       {
-        icon: <Eye className="w-10 h-10" />,
+        icon: <HandCoins className="w-10 h-10" />,
         color: "indigo",
-        title: "Optical Flow Tracking",
-        desc: "Cameras track animal movement speed and gait to detect potential lameness during the sorting process."
+        title: "Release Cash Flow",
+        desc: "Reduces safety stock needs by guaranteeing real-time inventory accuracy"
       },
       {
-        icon: <Cpu className="w-10 h-10" />,
+        icon: <CircleDollarSign className="w-10 h-10" />,
         color: "red",
-        title: "Instant Gate Control",
-        desc: "Low-latency hydraulic actuators respond in under 200ms to guide animals to the correct pen."
+        title: "Prevent Revenue Loss",
+        desc: "Prevents turning down orders when stock is actually on the shelf"
       },
       {
-        icon: <CheckCircle2 className="w-10 h-10" />,
-        color: "blue",
-        title: "Weight Integration",
-        desc: "Seamlessly pulls data from existing load bars to make sorting decisions based on daily gain."
+        icon: <BookCheck className="w-10 h-10" />,
+        color: "green",
+        title: "Automate Audits",
+        desc: "Replaces costly manual counts with continuous, passive cycle counting"
       },
       {
-        icon: <MonitorPlay className="w-10 h-10" />,
-        color: "gray",
-        title: "Cloud Dashboard",
-        desc: "View sort stats and inventory counts in real-time from the Huroca cloud portal."
+        icon: <ShieldPlus className="w-10 h-10" />,
+        color: "yellow",
+        title: "Enhance Security",
+        desc: "Tracks movement timing to infer theft or irregular handling"
       }
     ]
   }
 ];
+
 
     export default function TechnologySection() {
         const [currentSlide, setCurrentSlide] = useState(0);
@@ -113,6 +191,7 @@ const PROJECTS = [
         const project = PROJECTS[activeProjIdx];
 
         useEffect(() => {
+          if (project.id === 'pallet') return;
             const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % project.images.length);
             }, 4000);
@@ -172,21 +251,21 @@ const PROJECTS = [
                         </div>
 
                         {/* Navigation Buttons */}
-                        <div className="flex items-center gap-3 shrink-0">
+                        <div className="flex items-center gap-3 shrink-0 mb-0 md:mb-28"> {/*need a way to remove mb for mobile phones */}
                             <button 
                                 onClick={handlePrevProject}
-                                className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95"
+                                className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95"
                             >
-                            <ChevronLeft className="w-6 h-6 text-gray-600" />
+                            <ChevronLeft className="w-8 h-8 text-gray-600" />
                             </button>
-                            <span className="text-sm font-medium text-gray-400 tabular-nums">
+                            <span className="text-sm font-medium text-gray-800 tabular-nums">
                             {activeProjIdx + 1} / {PROJECTS.length}
                             </span>
                             <button 
                                 onClick={handleNextProject}
-                                className="w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 transition-all active:scale-95 shadow-lg"
+                                className="w-14 h-14 rounded-full bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 transition-all active:scale-95 shadow-lg"
                             >
-                            <ArrowRight className="w-6 h-6" />
+                            <ChevronRight className="w-8 h-8" />
                             </button>
                         </div>
                     </div>
@@ -195,10 +274,16 @@ const PROJECTS = [
                     <div className={`grid grid-cols-1 lg:grid-cols-2 gap-24 items-start transition-all duration-500 ${isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
                         
                         {/* Left Col: Slideshow Container */}
-                        <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 border border-gray-200 group">
+                        <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 border border-gray-200 group mt-5">
                         <div className="aspect-[4/3] bg-slate-900 relative flex items-center justify-center overflow-hidden">
 
-                            {/* Images Mapped from Current Project */}
+                            {project.id === 'pallet' ? (
+                                <ComparisonSlider 
+                                    before={project.images[0]} 
+                                    after={project.images[1]} 
+                                />
+                            ) : (
+                              <>
                             {project.images.map((src, index) => (
                                 <div 
                                 key={`${project.id}-img-${index}`} // Unique key forces re-render on project switch
@@ -217,8 +302,10 @@ const PROJECTS = [
                                 />
                                 </div>
                             ))}
+                            </>)}
 
                             {/* Navigation Dots */}
+                            {project.id!== 'pallet'&& ( 
                             <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-2 z-20">
                                 {project.images.map((_, index) => (
                                 <button 
@@ -228,11 +315,12 @@ const PROJECTS = [
                                 />
                                 ))}
                             </div>
+                            )}
                         </div>
                         </div>
 
                         {/* Right Col: Dynamic Features List */}
-                        <div className="space-y-8">
+                        <div className="space-y-8 min-h-[500px]">
                         {project.features.map((feature, idx) => (
                             <div key={idx} className="flex gap-4 group">
                                 <div className={`flex-shrink-0 w-20 h-20 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105 ${getColorClasses(feature.color)}`}>
