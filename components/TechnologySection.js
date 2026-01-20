@@ -151,8 +151,8 @@ const PROJECTS = [
     ),
     description: "Computer vision inventory systems replace manual counting with automated, continuous monitoring, reducing safety stock while providing visual proof for security and logistics.",
     images: [
-      "/before.jpg", // Ensure these paths exist or use placeholders
-      "/after-v2.png"
+      "/new-before.jpg", // Ensure these paths exist or use placeholders
+      "/new-after.png"
     ],
     features: [
       {
