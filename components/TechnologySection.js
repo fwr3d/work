@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect,useRef} from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ArrowRight, Eye, Cpu, CheckCircle2, MonitorPlay, Syringe, ScanBarcode, HandCoins, BookCheck, ShieldPlus, CircleDollarSign, ChevronRight} from 'lucide-react';
+import { ChevronLeft,TriangleAlert,CalendarCheck,BadgeCheck,CheckCheck, Eye, Cpu, CheckCircle2, MonitorPlay, Syringe, ScanBarcode, ChevronRight} from 'lucide-react';
 
 const getColorClasses = (color) => {
     const map = {
@@ -87,8 +87,8 @@ const ComparisonSlider = ({ before, after }) => {
             </div>
             
             {/* Optional Labels */}
-            <div className="absolute top-4 left-4 bg-black/50 text-white text-xs px-2 py-1 rounded backdrop-blur-sm z-10">BEFORE</div>
-            <div className="absolute top-4 right-4 bg-black/50 text-white text-xs px-2 py-1 rounded backdrop-blur-sm z-10">AFTER</div>
+            <div className="absolute top-4 left-4 bg-black/80 text-white text-xs px-2 py-1 rounded backdrop-blur-sm z-10">BEFORE</div>
+            <div className="absolute top-4 right-4 bg-black/80 text-white text-xs px-2 py-1 rounded backdrop-blur-sm z-10">AFTER</div>
         </div>
     );
 };
@@ -149,35 +149,35 @@ const PROJECTS = [
         Automated <span className="text-indigo-700">Inventory</span>
       </>
     ),
-    description: "Computer vision inventory systems replace manual counting with automated, continuous monitoring, reducing safety stock while providing visual proof for security and logistics.",
+    description: "By automating reconciliation, you can audit frequently to catch discrepancies the moment they happen. This delivers the accuracy needed to reduce theft and drive smarter purchasing decisions",
     images: [
       "/new-before.jpg", // Ensure these paths exist or use placeholders
       "/new-after.png"
     ],
     features: [
       {
-        icon: <HandCoins className="w-10 h-10" />,
+        icon: <CheckCheck className="w-10 h-10" />,
         color: "indigo",
-        title: "Release Cash Flow",
-        desc: "Reduces safety stock needs by guaranteeing real-time inventory accuracy"
+        title: "Automated Reconciliation",
+        desc: "Matches physical shelf stock to digital records"
       },
       {
-        icon: <CircleDollarSign className="w-10 h-10" />,
-        color: "red",
-        title: "Prevent Revenue Loss",
-        desc: "Prevents turning down orders when stock is actually on the shelf"
-      },
-      {
-        icon: <BookCheck className="w-10 h-10" />,
-        color: "green",
-        title: "Automate Audits",
-        desc: "Replaces costly manual counts with continuous, passive cycle counting"
-      },
-      {
-        icon: <ShieldPlus className="w-10 h-10" />,
+        icon: <CalendarCheck className="w-10 h-10" />,
         color: "yellow",
-        title: "Enhance Security",
-        desc: "Tracks movement timing to infer theft or irregular handling"
+        title: "Frequent Audits",
+        desc: "Lowers manual effort. Enables more frequent wall-to-wall checks"
+      },
+      {
+        icon: <TriangleAlert className="w-10 h-10" />,
+        color: "red",
+        title: "Discrepancy Tracking",
+        desc: "Flags record misalignments to pinpoint theft or errors"
+      },
+      {
+        icon: <BadgeCheck className="w-10 h-10" />,
+        color: "green",
+        title: "Verified On-Hand",
+        desc: "Provides visual proof of stock levels for purchasing"
       }
     ]
   }
