@@ -1,520 +1,144 @@
-import Image from 'next/image';
-import TechnologySection from '@/components/TechnologySection';
-import HeroScene from '@/components/HeroScene';
-import ContactForm from '@/components/ContactForm';
+"use client";
 
-import { 
-  Target, ShieldCheck, Heart, Users, Database, 
-  MapPin, Mail, Building2, GraduationCap, Award, Syringe,
-} from 'lucide-react';
+import Link from "next/link";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
+const ICON_PATH =
+  "M40.703 6.344c5.718 4.123 7.611 12.856 10.047 19.219C60.664 50.802 75.596 69.974 99 84l2.626 1.64c7.62 4.644 15.386 7.976 23.749 11.048l3.672 1.392c12.29 4.592 24.752 8.068 37.578 10.795l3.541.757c14.556 3.035 29.23 5.419 43.914 7.744 2.397.382 4.792.77 7.186 1.173 8.853 1.454 17.738 2.263 26.667 3.082 14.533 1.35 28.899 2.728 43.067 6.369l2.462.6c25.164 6.198 50.116 16.94 69.538 34.4l1.543 1.381c15.828 14.202 27.91 29.82 39.252 47.719q1.216 1.917 2.437 3.832c4.724 7.411 9.271 14.872 13.518 22.568 3.06 5.524 6.276 10.58 10.25 15.5a3022 3022 0 0 1 3.419 4.516c8.45 11.13 17.353 21.523 27.367 31.284 2.782 2.72 5.47 5.426 7.937 8.438 1.86 2.257 3.624 4.128 5.84 6.012l2.074 1.766L479 308l2.832 2.422c4.575 3.876 9.137 7.646 14.106 11.015 4.74 3.222 9.036 6.848 13.377 10.577 3.511 3.012 7.076 5.874 10.806 8.607 3.692 2.71 7.284 5.544 10.879 8.379l2.91 2.27 2.965 2.355 2.742 2.164c4.07 3.777 6.101 7.704 6.544 13.215.243 12.328-.509 23.946-3.161 35.996l-.52 2.372c-5.656 24.986-16.54 46.318-38.872 60.5-6.788 4.066-14.082 6.761-21.608 9.128l-3.559 1.129c-6.258 1.492-12.729 1.355-19.128 1.371l-2.075.01c-12.526-.004-23.51-2.095-35.238-6.51l-3.64-1.266c-5.79-2.097-11.355-4.62-16.923-7.234l-1.943-.912a707 707 0 0 1-8.267-3.936C366.36 448.313 335.185 444.495 309 453l-2.04.633C296.57 456.92 287.837 461.665 279 468l-2.566 1.828c-6.306 4.779-11.778 10.384-17.258 16.069l-1.856 1.908-1.648 1.718c-4.21 3.719-7.588 3.691-13.11 3.352l-3.933-.195c-4.015-.752-5.757-1.835-8.629-4.68-2.4-4.801-1.738-10.835-1-16 2.071-4.255 4.802-7.537 8-11l1.855-2.105C253.541 443.207 273.885 432.028 294 425l2.602-.95c9.49-3.342 18.266-4.359 28.324-4.35l3.709-.014q3.869-.008 7.738-.002c3.917.003 7.833-.02 11.75-.045q3.776-.004 7.553-.002l3.505-.028c7.685.043 14.453 1.245 21.819 3.391q2.163.56 4.328 1.105c9.564 2.584 18.003 6.267 26.744 10.885 15.795 8.274 32.23 15.16 50.24 15.26l2.764.063c10.421.06 19.851-3.819 27.647-10.872 1.565-1.74 2.927-3.527 4.277-5.441l1.777-2.469c3.875-5.701 6.432-11.201 8.399-17.804.824-2.727.824-2.727 1.832-5.004 1.416-3.885 1.94-7.832 2.555-11.91q.373-2.43.753-4.856l.327-2.157C513 388 513 388 514 386q-9.045.934-18.085 1.917-3.067.33-6.135.645c-19.854 1.543-19.854 1.543-37.78 9.438-1.015 3.654-1.213 6.127-.312 9.813 1.586 2.643 2.485 3.03 5.312 4.187 3.32.792 6.656 1.456 10.004 2.121 4.368 1.281 4.368 1.281 5.996 3.879.916 5.786 1.23 11.244-2.187 16.125L468 436l-2.437 1.688c-6.44 3.298-11.607 3.777-18.536 1.729a125 125 0 0 1-5.714-2.23l-1.932-.751c-9.275-3.762-16.363-11.605-20.404-20.752-1.136-4.204-1.013-8.365-.977-12.684l-2.762-1.04c-8.696-3.448-16.46-7.758-24.238-12.96l-2.64-1.76c-7.016-4.79-13.701-9.94-19.173-16.49-1.579-1.876-3.105-3.672-4.886-5.36C363 364 363 364 363 362l-3-1c-3-3.444-3-3.444-3-6h-2c-1.31-1.478-1.31-1.478-2.793-3.55l-1.662-2.311-1.733-2.452-1.673-2.322c-6.946-9.72-13.092-19.793-18.764-30.303l-1.656-3.013c-3.71-6.847-6.858-13.807-9.719-21.049-2.536 0-4.146.806-6.488 1.793-9.804 4.042-19.483 7.782-29.824 10.207l-2.508.59c-30.234 6.681-63.539-.552-89.926-16.36-13.538-9.28-22.848-21.744-30.254-36.23v-2l1.89-1.05c14.56-8.04 14.56-8.04 28.673-16.825 13.362-8.784 27.773-14.43 42.996-19.074A266 266 0 0 0 238 209c15.292-1.025 30.387-.829 45 4l3.387 1.098C299.685 218.83 311.554 225.482 322 235l2.137 1.89c13.928 13.026 20.863 30.937 28.504 47.993C357.293 295.266 362.04 305.296 368 315l1.734 2.871c6.602 10.675 14.186 20.312 22.766 29.438 1.986 2.138 3.854 4.3 5.688 6.566 3.139 3.701 6.863 6.343 10.812 9.125q2.783 2.03 5.563 4.063l2.828 2.027a100 100 0 0 1 4.656 3.601c1.917 1.63 1.917 1.63 4.953 3.309 2.936-.25 2.936-.25 6-2 14.56-6.816 27.596-10.767 43.501-12.691 3.612-.447 7.21-.971 10.812-1.497L493 359c-8.156-6.623-16.321-13.069-25-19-31.965-22.295-57.842-52.826-78.902-85.309A745 745 0 0 0 386 249.97c-3.332-5.112-6.272-10.249-8.86-15.778-1.182-2.272-2.593-4.154-4.14-6.191a137 137 0 0 1-1.937-3.75c-3.08-5.71-7.078-10.732-11.05-15.84l-1.564-2.031-1.427-1.826C356 203 356 203 356 201h-2c-1.34-1.398-1.34-1.398-2.937-3.375C334.643 178.47 312.953 167.671 289 161l-2.426-.713c-9.83-2.698-19.925-3.962-29.998-5.394-3.174-.452-6.346-.913-9.517-1.375-9.206-1.332-18.405-2.604-27.657-3.577-7.801-.82-15.494-2.042-23.214-3.441q-3.604-.642-7.208-1.281l-3.526-.628a441 441 0 0 0-10.079-1.583C137.875 137.317 99.335 125.364 69 102l-2.82-2.14c-6.275-4.94-11.886-10.413-17.41-16.164l-1.704-1.755-1.501-1.572C43.83 78.851 42.095 77.945 40 77c3.966 22.95 8.4 44.045 21 64l1.664 2.719c2.696 4.259 5.198 7.31 9.336 10.281a749 749 0 0 1 5 5c6.968 6.682 13.895 12.722 22 18l2.328 1.629c11.335 7.681 24.28 13.569 37.172 18.121 5.15 1.902 7.755 3.446 10.5 8.25 1.596 4.893 1.085 9.35-1 14-1.867 3.04-3.732 4.563-7 6-18.376 3.632-36.554-7.231-52-16l-5.75-3c-5.794-3.18-11.022-6.969-16.25-11l-2.574-1.95C52.157 183.424 40.44 172.16 32 159l-1.969-2.93C6.183 119.29 1.388 71.416 10 29l.454-2.248c1.845-8.707 3.68-16.4 11.359-21.69 6.958-2.32 12.168-1.03 18.89 1.282m177.672 241.781-1.881.95c-5.086 2.613-9.856 5.576-14.494 8.925 3.757 8.951 16.66 13.206 25 17 1.99.699 3.986 1.377 6 2v-2h-2l-.312-3c-.399-2.898-1.145-5.357-2.25-8.062-1.369-3.438-1.794-6.203-1.438-9.938l1-2c.04-2.333.043-4.667 0-7-3.778 0-6.341 1.447-9.625 3.125M280 245l1 2.813c2.606 9.543 1.029 16.356-3.687 24.949L276 275c2.134 1.359 2.134 1.359 5.125-.004q1.943-.765 3.875-1.558l2.03-.821c5.656-2.353 10.863-5.228 15.97-8.617-1.423-7.098-8.342-11.089-14-15-4.195-2.9-4.195-2.9-9-4";
 
-export default function Home() {
+const WORDMARK_PATH =
+  "M0 8.59V0h1.734v3.38h3.399V0h1.734v8.59H5.133V4.834H1.734V8.59zm12.798 0v-.932a2.4 2.4 0 0 1-.896.785 2.5 2.5 0 0 1-1.166.287q-.627 0-1.126-.275a1.63 1.63 0 0 1-.72-.773q-.223-.498-.223-1.377V2.367h1.647v2.86q0 1.313.088 1.61a.9.9 0 0 0 .334.47q.24.17.609.17.422 0 .756-.229.333-.234.457-.574.123-.345.123-1.682V2.367h1.646V8.59zm4.864 0h-1.646V2.367h1.53v.885q.39-.627.702-.826.317-.2.715-.2.562 0 1.084.311l-.51 1.436q-.416-.27-.773-.27a.9.9 0 0 0-.586.193q-.24.188-.38.686-.136.498-.136 2.086zm2.767-3.2q0-.82.405-1.587a2.8 2.8 0 0 1 1.142-1.172 3.4 3.4 0 0 1 1.658-.404q1.413 0 2.315.92.902.913.902 2.314 0 1.412-.914 2.344-.91.925-2.291.925-.855 0-1.635-.386a2.66 2.66 0 0 1-1.177-1.131q-.405-.75-.405-1.822m1.688.089q0 .926.44 1.417.438.493 1.083.493.646 0 1.078-.493.44-.492.44-1.43 0-.913-.44-1.405a1.38 1.38 0 0 0-1.078-.493q-.644 0-1.084.493-.44.491-.44 1.418M33.62 4.207l-1.623.293q-.082-.486-.375-.732-.288-.247-.75-.247-.616 0-.985.428-.363.422-.363 1.418 0 1.107.37 1.565.374.457 1.001.457.47 0 .768-.264.299-.27.422-.92l1.617.275q-.252 1.114-.967 1.682t-1.916.568q-1.365 0-2.18-.86-.808-.862-.808-2.386 0-1.54.814-2.396.814-.861 2.203-.861 1.137 0 1.805.492.674.486.967 1.488m2.532.059-1.494-.27q.252-.902.867-1.336.615-.433 1.828-.433 1.103 0 1.64.263.54.258.757.662.222.399.222 1.471l-.017 1.922q0 .82.076 1.213.082.387.299.832H38.7a6 6 0 0 1-.157-.486 3 3 0 0 0-.059-.194 3 3 0 0 1-.902.615q-.48.205-1.026.205-.96 0-1.517-.521-.55-.522-.551-1.318 0-.527.252-.938.252-.415.703-.633.457-.222 1.313-.386 1.154-.217 1.6-.405v-.164q0-.474-.235-.674-.234-.204-.885-.205-.44 0-.685.176-.247.17-.399.604m2.203 1.336q-.316.105-1.002.252-.686.146-.896.287-.322.228-.322.58 0 .346.257.597a.9.9 0 0 0 .657.252q.445 0 .85-.293.298-.222.392-.545.064-.21.064-.802z";
+
+export default function LandingPage() {
+  const rootRef       = useRef(null);
+  const iconStrokeRef = useRef(null);
+  const wmStrokeRef   = useRef(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    const iconStroke = iconStrokeRef.current;
+    const wmStroke   = wmStrokeRef.current;
+    if (!iconStroke || !wmStroke) return;
+
+    const iconLen = iconStroke.getTotalLength();
+    const wmLen   = wmStroke.getTotalLength();
+
+    gsap.set(iconStroke, { strokeDasharray: iconLen, strokeDashoffset: iconLen });
+    gsap.set(wmStroke,   { strokeDasharray: wmLen,   strokeDashoffset: wmLen   });
+    gsap.set(".l-icon-fill", { opacity: 0 });
+    gsap.set(".l-wm-fill",   { opacity: 0 });
+    gsap.set(".l-rule",      { scaleX: 0, transformOrigin: "center" });
+    gsap.set(".l-tag",       { opacity: 0, y: 8 });
+    gsap.set(".l-enter",     { opacity: 0 });
+
+    const tl = gsap.timeline();
+
+    // icon and wordmark both start drawing at the same time (position 0.2)
+    tl.to(iconStroke, { strokeDashoffset: 0, duration: 1.6, ease: "none" }, 0.2)
+      .to(wmStroke,   { strokeDashoffset: 0, duration: 1.6, ease: "none" }, 0.2)
+      // both fill in together once drawing finishes
+      .to(".l-icon-fill", { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.8)
+      .to(iconStroke,     { opacity: 0, duration: 0.3 }, 1.85)
+      .to(".l-wm-fill",   { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.8)
+      .to(wmStroke,       { opacity: 0, duration: 0.3 }, 1.85)
+      // tail
+      .to(".l-rule",  { scaleX: 1, duration: 0.65, ease: "power2.inOut"  }, 2.1)
+      .to(".l-tag",   { opacity: 0.45, y: 0, duration: 0.55, ease: "power3.out" }, 2.3)
+      .to(".l-enter", { opacity: 1,           duration: 0.5,  ease: "power3.out" }, 2.65);
+
+    return () => tl.kill();
+  }, []);
 
   return (
-    <main className="flex flex-col min-h-screen">
-      
-      {/* HERO SECTION */}
-      <section id="home" className="relative h-[70vh] w-full flex items-center justify-center bg-gray-100 overflow-hidden">
-        
-        <HeroScene />
+    <>
+      <style>{`
+        .l-enter-link {
+          font-weight: 400;
+          font-size: 0.65rem;
+          letter-spacing: 0.45em;
+          text-transform: uppercase;
+          color: #1c1b18;
+          position: relative;
+          padding-bottom: 3px;
+          transition: opacity 0.35s ease;
+        }
+        .l-enter-link::after {
+          content: '';
+          position: absolute;
+          bottom: 0; left: 0;
+          width: 100%; height: 1px;
+          background: #1c1b18;
+          transform-origin: left;
+          transition: transform 0.4s ease;
+        }
+        .l-enter-link:hover::after { transform: scaleX(0); transform-origin: right; }
+        .l-enter-link:hover { opacity: 0.45; }
+      `}</style>
 
-        {/* Content Overlay */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left pointer-events-none w-full">
-           <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl mb-6 drop-shadow-sm">
-            Field Ready Robotics <br />
-            <span className="text-green-700">For Any Environment</span>
-          </h1>
-             <p className="mt-4 text-xl text-gray-600 max-w-2xl mb-10 font-medium">
-            Huroca combines advanced robotics and computer vision to automate agricultural processes.
-          </p>
-          <div className="flex justify-start gap-4 pointer-events-auto">
-              <a 
-                href="#about" 
-                className="bg-green-800 backdrop-blur-sm text-white border border-gray-300 px-6 py-3 md:px-8 md:py-3 rounded-lg font-semibold hover:bg-green-600 transition text-base md:text-lg inline-block text-center"
-              >
-                Learn More
-              </a>
+      <main
+        ref={rootRef}
+        className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#F7F6F1] px-8"
+      >
+        <div className="flex flex-col items-center">
+
+          <div className="relative w-[min(38vw,10rem)]" style={{ aspectRatio: "556/501" }}>
+            <svg viewBox="0 0 556 501" className="absolute inset-0 w-full h-full" aria-hidden="true">
+              <path className="l-icon-fill" d={ICON_PATH} fill="#1c1b18" />
+            </svg>
+            <svg viewBox="0 0 556 501" className="absolute inset-0 w-full h-full" aria-hidden="true">
+              <path
+                ref={iconStrokeRef}
+                d={ICON_PATH}
+                fill="none"
+                stroke="#1c1b18"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
-        </div>
-
-        <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-white to-transparent z-10"></div>
-      </section>
-      
-      
-      {/* Supported By Section */}
-      <section className="py-10 bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-          <p className="text-md font-semibold text-gray-700 uppercase tracking-wider mb-6">
-            Our Network
-          </p>
-          
-
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-40 opacity-100 transition-all duration-500">
-
-            <div className="w-80 h-32 relative hover:grayscale-0 transition-all duration-300">
-               <Image 
-                  src="/HUB.png" 
-                  alt="Hub for Neuroengineering Solutions" 
-                  fill 
-                  className="object-contain"
-                  sizes="(max-width: 768px) 320px, 320px"
-               />
-            </div>
-
-            <div className="w-64 h-32 relative hover:grayscale-0 transition-all duration-300">
-               <Image 
-                  src="/ACFA.png" 
-                  alt="Alberta Cattle Feeders Association" 
-                  fill 
-                  className="object-contain"
-                  sizes="(max-width: 768px) 256px, 256px"
-               />
-            </div>
-            
-            <div className="w-80 h-32 relative hover:grayscale-0 transition-all duration-300">
-               <Image 
-                  src="/UOFL_Horizontal.png" 
-                  alt="University of Lethbridge" 
-                  fill 
-                  className="object-contain"
-                  sizes="(max-width: 768px) 256px, 320px"
-               />
-            </div>
-
-          </div>
-        </div>
-      </section>
-      
-        {/* --- TECHNOLOGY SECTION (Dynamic Slide Window) --- */}
-      <TechnologySection />
-
-
-      {/* --- BENTO GRID VALUE PROP SECTION --- */}
-      <section id="whyus" className="relative py-24 lg:py-32 overflow-hidden bg-white">
-        <div className="absolute inset-0 z-0 opacity-[0.03]" 
-             style={{ 
-               backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
-               backgroundSize: '40px 40px' 
-             }}>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-semibold mb-6">
-        <Syringe className="w-4 h-4" />
-        <span className="uppercase tracking-wide">Automated Injection Project</span>
-      </div>
-          <div className="max-w-3xl mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-[1.1] mb-6">
-              Replacing manual risk <br />
-              with <span className="text-green-700">robotic reliability.</span>
-            </h2>
-            <p className="text-lg text-gray-600 leading-relaxed border-l-4 border-blue-100 pl-6">
-              Huroca brings industrial robotics and computer vision to the feedlot,
-              delivering safer, faster, and perfectly accurate injections.
-            </p>
+          <div className="relative mt-6 w-[min(55vw,16rem)]" style={{ aspectRatio: "41/9" }}>
+            <svg viewBox="0 0 41 9" className="absolute inset-0 w-full h-full" aria-hidden="true">
+              <path className="l-wm-fill" d={WORDMARK_PATH} fill="#1c1b18" />
+            </svg>
+            <svg viewBox="0 0 41 9" className="absolute inset-0 w-full h-full" aria-hidden="true">
+              <path
+                ref={wmStrokeRef}
+                d={WORDMARK_PATH}
+                fill="none"
+                stroke="#1c1b18"
+                strokeWidth="0.35"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-1 md:col-span-6 lg:col-span-7 group relative p-8 md:p-10 bg-white rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                <Target size={180} strokeWidth={1} />
-              </div>
-              <div className="relative z-10">
-                <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-blue-600 group-hover:scale-110 transition-transform">
-                  <Users size={28} />
-                </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Operational Efficiency</h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Automates a labour-intensive and repetitive task, allowing for labour to be directed elsewhere
-              </p>
-              </div>
-            </div>
-
-            <div className="col-span-1 md:col-span-3 lg:col-span-5 group p-8 md:p-10 bg-white rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 text-emerald-600 shadow-sm">
-                <ShieldCheck size={28} />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Safer Workplaces</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Automation removes staff from the line of fire, reducing injuries, liability and exposure
-              </p>
-            </div>
-
-            <div className="col-span-1 md:col-span-3 lg:col-span-4 group p-8 bg-white rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="w-12 h-12 bg-rose-50 rounded-xl flex items-center justify-center mb-4 text-rose-600">
-                <Heart size={24} />
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Animal Welfare</h3>
-              <p className="text-gray-700 text-sm">
-                Reliable vision system reduces the risk of injury to the animal
-              </p>
-            </div>
-
-            <div className="col-span-1 md:col-span-3 lg:col-span-4 group p-8 bg-white rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-4 text-amber-600">
-                <Target size={24} />
-              </div>
-        
-                            <h3 className="text-lg font-bold text-gray-900 mb-2">  Reliability</h3>
-                <p className="text-gray-700 text-sm">
-                  Manual injections are dangerous and inconsistent. Huroca delivers repeatable accuracy.
-                       </p>
-            </div>
-
-            <div className="col-span-1 md:col-span-6 lg:col-span-4 group p-8 bg-white rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-              <div>
-                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-4 text-blue-600">
-                  <Database size={24} />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Traceability</h3>
-                <p className="text-gray-700 text-sm leading-relaxed">
-                  Automated logging of animal ID, dosage, and timestamp for accurate records.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ABOUT SECTION */}
-      <section id="about" className="py-30 bg-white border-t border-gray-100 relative overflow-hidden">
-         <div className="absolute inset-0 z-0 opacity-[0.03]" 
-             style={{ 
-               backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
-               backgroundSize: '40px 40px' 
-             }}>
-        </div>
-
-         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-28 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <p
+            className="mt-4"
+            style={{
               
-              {/* Text Column */}
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold tracking-wide uppercase mb-6">
-                  <MapPin size={14} />
-                  Born in Lethbridge
-                </div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                  Bringing technology where it’s <br/>
-                  <span className="text-green-700">needed the most.</span>
-                </h2>
-                
-                <div className="space-y-6 text-lg text-gray-600">
-                  <p>
-                    Huroca is a homegrown startup born in 
-                    <span className="font-semibold text-gray-900"> Lethbridge, Alberta</span> the heart of Canada’s Feedlot Alley.
-                  </p>
-                  <p>
-                    We saw a gap between advanced automation technology and the rugged, practical needs of Southern Alberta feedlots. Our mission is simple: to build the bridge that brings industry grade robotics directly to the chute.
-                  </p>
-                </div>
-
-                <div className="mt-10 pt-8 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="flex gap-4">
-                    <div className="w-20 h-20 bg-white rounded-lg shadow-sm border border-gray-100 flex items-center justify-center text-blue-600 shrink-0">
-                      <Building2 size={40} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 text-lg">Letters of Support</h4>
-                      <p className="text-sm text-gray-700 mt-1"> UFA & Alberta Cattle Feeders Association</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-20 h-20 bg-white rounded-lg shadow-sm border border-gray-100 flex items-center justify-center text-purple-600 shrink-0">
-                      <GraduationCap size={40} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 text-lg">Research Driven</h4>
-                      <p className="text-sm text-gray-700 mt-1">Univ. of Lethbridge & Hub for Neuroengineering Solutions</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Visual Column */}
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-tr from-green-100 to-blue-50 rounded-[2.5rem] blur-2xl opacity-60"></div>
-                <div className="relative bg-white rounded-[2rem] p-8 shadow-xl border border-gray-100">
-                   <div className="flex flex-col gap-6">
-                      <div className="flex items-center gap-4 pb-6 border-b border-gray-200">
-                         <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-700">
-                            <Award size={24} />
-                         </div>
-                         <div>
-                            <h3 className="font-bold text-xl text-gray-900">Made for the Industry</h3>
-                            <p className="text-sm text-gray-700">Solving real problems for real producers.</p>
-                         </div>
-                      </div>
-                      
-                      <div className="bg-gray-50 rounded-xl p-6">
-                         <p className="text-gray-700 italic text-lg leading-relaxed">
-                           "We aren't just building robots; we are building the future workforce of agriculture. Reliable, safe, and always operational."
-                         </p>
-                         <div className="mt-4 flex items-center gap-3">
-                             {/* Small Quote Portrait - Converted */}
-                             <div className="w-18 h-18 rounded-full overflow-hidden bg-gray-200 border border-gray-200 relative">
-                                <Image 
-                                  src="/potraits/emilio-3.jpeg" 
-                                  alt="Emilio Hurtado" 
-                                  fill 
-                                  className="object-cover" 
-                                />
-                            </div>
-                            <span className="text-s font-bold text-gray-900">Emilio Hurtado, CEO</span>
-                         </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-3 gap-2 text-center">
-                         <div className="p-3 bg-blue-50 rounded-lg">
-                            <span className="block text-lg font-bold text-blue-700">AB</span>
-                            <span className="text-[10px] font-bold text-blue-400 uppercase">Born</span>
-                         </div>
-                         <div className="p-3 bg-green-50 rounded-lg">
-                            <span className="block text-lg font-bold text-green-700">2024</span>
-                            <span className="text-[10px] font-bold text-green-400 uppercase">Est.</span>
-                         </div>
-                         <div className="p-3 bg-purple-50 rounded-lg">
-                            <span className="block text-lg font-bold text-purple-700">UofL</span>
-                            <span className="text-[10px] font-bold text-purple-400 uppercase">R&D</span>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-              </div>
-
-            </div>
-         </div>
-      </section>
-
-      {/* Team Section */}
-      <section id="team" className="relative py-25 bg-white overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-[0.03]" 
-             style={{ 
-               backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
-               backgroundSize: '40px 40px' 
-             }}>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet the Team</h2>
-          <p className="text-gray-700 mb-12 max-w-2xl mx-auto">
-            Bringing together expertise in Computer Science, Neuroscience, Agriculture and Robotics to transform the future of Industry.
+              fontWeight: 12000,
+              fontSize: "0.58rem",
+              letterSpacing: "0.52em",
+              textTransform: "uppercase",
+              color: "#000000",
+          
+            }}
+          >
+            Autonomous Precision Robotics
           </p>
-          
-          {/* Core Team Grid - Converted to Next/Image */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white p-12 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
-              <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden relative">
-                 <Image src="/potraits/emilio-2.jpeg" alt="Emilio Hurtado" fill className="object-cover" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Emilio Hurtado</h3>
-              <p className="text-green-700 font-bold mb-3">Co-Founder & CEO</p>
-              <p className="text-gray-700 text-sm">
-                Combines a background in AI & Neuroscience with hands-on feedlot experience to lead the vision for automated cattle care.
-              </p>
-            </div>
 
-            <div className="bg-white p-12 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
-              <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden relative">
-                 <Image src="/potraits/chandra.jpg" alt="Chandra Suryadevara" fill className="object-cover" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Chandra Suryadevara</h3>
-              <p className="text-green-700 font-bold mb-3">Co-Founder & CTO</p>
-              <p className="text-gray-700 text-sm">
-                Specializing in advanced computer science, Software-Hardware integration and innovative robotics solutions.
-              </p>
-            </div>
-            <div className="bg-white p-12 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
-              <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden relative">
-                 <Image src="/potraits/naveen.jpg" alt="Naveen Kumar Vadlamudi" fill className="object-cover" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Naveen Vadlamudi</h3>
-              <p className="text-green-700 font-bold mb-3">Co-Founder & COO</p>
-              <p className="text-gray-700 text-sm">
-                 Experienced leader uniting technical vision with organizational management to optimize company performance.
-              </p>
-            </div>
-            <div className="bg-white p-12 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100">
-              <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden relative">
-                 <Image src="/potraits/brendon.png" alt="Brendon Penner" fill className="object-cover" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Brendon Penner</h3>
-              <p className="text-green-700 font-bold mb-3">CFO</p>
-              <p className="text-gray-700 text-sm">
-                 Financial leader with Neuroengineering Hub management experience, delivering strategic guidance and operational excellence.
-              </p>
-            </div>
-            </div>
-          </div>
-          </section>
-             <section id="mentors" className="relative bg-white overflow-hidden">
-              <div className="absolute inset-0 z-0 opacity-[0.03]" 
-             style={{ 
-               backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
-               backgroundSize: '40px 40px' 
-             }}>
-        </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mentors & Advisors</h2>
-        <p className="text-gray-700 mb-12 max-w-2xl mx-auto">
-              Bridging the gap between academic innovation and industry reality. 
-              Our advisory board combines deep research in Computer Science and Business with 
-              practical insights from the feedlot sector, ensuring our technology is not just 
-              theoretically sound, but built for the real world.
-            </p>
-          
-            
-            {/* Advisors - Converted to Next/Image */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-blue-100 transition-all">
-                <div className="w-32 h-32 bg-blue-50 rounded-full mx-auto mb-4 overflow-hidden relative border border-blue-100">
-                  <Image src="/potraits/hardeep.jpeg" alt="Dr. Hardeep Ryait" fill className="object-cover" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900">Dr. Hardeep Ryait</h3>
-                <p className="text-green-700 text-xs font-bold uppercase tracking-wide mb-2">Technical Mentor</p>
-                <p className="text-gray-700 text-s leading-relaxed">
-                  Expert engineering guidance on technical architecture and research direction.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-purple-100 transition-all">
-                <div className="w-32 h-32 bg-purple-50 rounded-full mx-auto mb-4 overflow-hidden relative border border-purple-100">
-                  <Image src="/potraits/Shapiro.png" alt="Dr. Sydney Shapiro" fill className="object-cover" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900">Dr. Sydney Shapiro</h3>
-                <p className="text-green-700 text-xs font-bold uppercase tracking-wide mb-2">Business Advisor</p>
-                <p className="text-gray-700 text-s leading-relaxed">
-                  Strategic direction and growth mentorship for scaling ventures.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-green-100 transition-all">
-                <div className="w-32 h-32 bg-green-50 rounded-full mx-auto mb-4 overflow-hidden relative border border-green-100">
-                  <Image src="/potraits/cristo.jpeg" alt="Cristo Hurtado" fill className="object-cover" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900">Cristo Hurtado</h3>
-                <p className="text-green-700 text-xs font-bold uppercase tracking-wide mb-2">Industry Advisor</p>
-                <p className="text-gray-700 text-s leading-relaxed">
-                  Deep feedlot industry insights and operational guidance.
-                </p>
-              </div>
-            </div>
-
-        </div>
-      </section>
-
-       <section id="contact" className="relative py-40 bg-white overflow-hidden border-t border-gray-100">
-        <div className="absolute inset-0 z-0 opacity-[0.03]" 
-             style={{ 
-               backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
-               backgroundSize: '40px 40px' 
-             }}>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            
-            {/* Left Col: Info & CTA */}
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Ready to replace repetition with  <br/> 
-                <span className="text-green-700">Reliability?</span>
-              </h2>
-              <p className="text-lg text-gray-600 mb-12 leading-relaxed">
-                Whether you are interested in piloting our technology, investing in the future of ag-tech, or just want to learn more, we want to hear from you. We are currently accepting partners for our pilot program in Alberta.
-              </p>
-              
-              <div className="space-y-8">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 shrink-0 border border-blue-100">
-                    <MapPin className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-gray-900">Headquarters</h3>
-                    <p className="text-gray-600 mt-1">Lethbridge, Alberta<br/>Canada</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 shrink-0 border border-green-100">
-                    <Mail className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-gray-900">Email Us</h3>
-                    <a href="mailto:info@hurocatech.com" className="text-gray-600 hover:text-green-700 mt-1 block transition-colors">
-                      info@hurocatech.com
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-             <ContactForm />
-          </div>
-        </div>
-      </section>
-      
-      {/* Footer */}
-      <footer className="bg-slate-950 text-slate-300 py-16 border-t border-slate-900">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                 {/* Footer Icon - Converted to Next/Image with specific size */}
-                 <Image 
-                    src="/Huroca-Icon.png" 
-                    alt="Huroca" 
-                    width={32} 
-                    height={32} 
-                    className="brightness-0 invert h-8 w-auto" 
-                 />
-                 <span className="text-2xl font-bold text-white">Huroca</span>
-              </div>
-              <p className="text-sm leading-relaxed text-slate-400">
-                Pioneering autonomous robotics for the modern feedlot. Born in Alberta, built for the world.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="text-white font-semibold mb-6">Company</h4>
-              <ul className="space-y-4 text-sm">
-                <li><a href="#home" className="hover:text-green-400 transition-colors">Home</a></li>
-                <li><a href="#technology" className="hover:text-green-400 transition-colors">Technology</a></li>
-                <li><a href="#whyus" className="hover:text-green-400 transition-colors">Why Us</a></li>
-                <li><a href="#team" className="hover:text-green-400 transition-colors">Our Team</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-white font-semibold mb-6">Contact</h4>
-              <ul className="space-y-4 text-sm">
-                <li className="flex items-start gap-3">
-                  <MapPin size={16} className="mt-1 text-green-500" />
-                  <span>Lethbridge, Alberta<br/>Canada</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Mail size={16} className="text-green-500" />
-                  <a href="mailto:info@hurocatech.com" className="hover:text-green-400 transition-colors">info@hurocatech.com</a>
-                </li>
-              </ul>
-            </div>
-
-           <div>
-              <h4 className="text-white font-semibold mb-6">Legal</h4>
-              <ul className="space-y-4 text-sm">
-                <li><a href="/privacy" className="hover:text-green-400 transition-colors">Privacy Policy</a></li>
-                <li><a href="/terms" className="hover:text-green-400 transition-colors">Terms of Service</a></li>
-              </ul>
-            </div>
+          <div className="l-enter mt-12" style={{ opacity: 0 }}>
+            <Link href="/home" className="l-enter-link">Enter</Link>
           </div>
 
-          <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-            <p>&copy; {new Date().getFullYear()} Huroca Technologies Inc. All rights reserved.</p>
-            <p>Designed & Developed in Southern Alberta.</p>
-          </div>
         </div>
-      </footer>
-    </main>
+      </main>
+    </>
   );
 }
