@@ -227,13 +227,8 @@ export default function TechnologySection() {
   return (
 
 
-    <section id="technology" className="relative py-25 bg-white border-t border-gray-100 overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-[0.03]"
-        style={{
-          backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
-        }}>
-      </div>
+    <section id="technology" className="relative py-25 bg-gradient-to-b from-[#0a0a0a] to-[#0f0f1e] border-t border-cyan-500/10 overflow-hidden">
+      <div className="absolute inset-0 z-0 grid-pattern opacity-15" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -242,32 +237,32 @@ export default function TechnologySection() {
 
           {/* Dynamic Text Content */}
           <div className={`transition-all duration-300 max-w-3xl ${isAnimating ? 'opacity-0 translate-x-14' : 'opacity-100 translate-x-0'}`}>
-            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold mb-6 ${getColorClasses(project.labelColor)}`}>
+            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold mb-6 bg-cyan-500/10 border border-cyan-400/50 ${getColorClasses(project.labelColor)}`}>
               {project.labelIcon}
-              <span className="uppercase tracking-wide">{project.label}</span>
+              <span className="uppercase tracking-wide text-cyan-400">{project.label}</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-[0_0_15px_rgba(0,217,255,0.2)]">
               {project.title}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-300">
               {project.description}
             </p>
           </div>
 
           {/* Navigation Buttons */}
-          <div className="flex items-center gap-3 shrink-0 mb-0 md:mb-28"> {/*need a way to remove mb for mobile phones */}
+          <div className="flex items-center gap-3 shrink-0 mb-0 md:mb-28">
             <button
               onClick={handlePrevProject}
-              className="w-18 h-18 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-all active:scale-95"
+              className="w-18 h-18 rounded-full border border-cyan-500/50 flex items-center justify-center hover:bg-cyan-500/10 transition-all active:scale-95 hover:drop-shadow-[0_0_15px_rgba(0,217,255,0.4)]"
             >
-              <ChevronLeft className="w-12 h-12 text-gray-600" />
+              <ChevronLeft className="w-12 h-12 text-cyan-400" />
             </button>
-            <span className="text-sm font-medium text-gray-800 tabular-nums">
+            <span className="text-sm font-medium text-cyan-400 tabular-nums">
               {activeProjIdx + 1} / {PROJECTS.length}
             </span>
             <button
               onClick={handleNextProject}
-              className="w-18 h-18 rounded-full bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 transition-all active:scale-95 shadow-lg"
+              className="w-18 h-18 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white flex items-center justify-center hover:from-cyan-400 hover:to-purple-500 transition-all active:scale-95 drop-shadow-[0_0_15px_rgba(0,217,255,0.5)] hover:drop-shadow-[0_0_25px_rgba(0,217,255,0.8)]"
             >
               <ChevronRight className="w-8 h-8" />
             </button>
@@ -278,8 +273,8 @@ export default function TechnologySection() {
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-24 items-start transition-all duration-300 ${isAnimating ? 'opacity-0 translate-x-14' : 'opacity-100 translate-x-0'}`}>
 
           {/* Left Col: Slideshow Container */}
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 border border-gray-200 group mt-5">
-            <div className="aspect-[4/3] bg-slate-900 relative flex items-center justify-center overflow-hidden">
+          <div className="relative rounded-3xl overflow-hidden glass group mt-5 drop-shadow-[0_0_30px_rgba(0,217,255,0.2)]">
+            <div className="aspect-[4/3] bg-slate-900 relative flex items-center justify-center overflow-hidden border border-cyan-400/30 rounded-3xl">
 
               {project.id === 'pallet' ? (
                 <ComparisonSlider
@@ -290,11 +285,10 @@ export default function TechnologySection() {
                 <>
                   {project.images.map((src, index) => (
                     <div
-                      key={`${project.id}-img-${index}`} // Unique key forces re-render on project switch
+                      key={`${project.id}-img-${index}`}
                       className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
                         }`}
                     >
-                      {/* Using simple img for demo if Next/Image paths are tricky, but Next/Image is better */}
                       <Image
                         src={src}
                         alt={`View ${index + 1}`}
@@ -314,7 +308,7 @@ export default function TechnologySection() {
                     <button
                       key={index}
                       onClick={() => setCurrentSlide(index)}
-                      className={`w-2 h-2 rounded-full transition-all ${index === currentSlide ? 'bg-green-500 w-4' : 'bg-white/50 hover:bg-white'}`}
+                      className={`w-2 h-2 rounded-full transition-all ${index === currentSlide ? 'bg-cyan-400 w-4 drop-shadow-[0_0_8px_rgba(0,217,255,0.6)]' : 'bg-white/30 hover:bg-cyan-400/50'}`}
                     />
                   ))}
                 </div>
@@ -326,12 +320,12 @@ export default function TechnologySection() {
           <div className="space-y-8 min-h-[500px]">
             {project.features.map((feature, idx) => (
               <div key={idx} className="flex gap-4 group">
-                <div className={`flex-shrink-0 w-20 h-20 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105 ${getColorClasses(feature.color)}`}>
+                <div className={`flex-shrink-0 w-20 h-20 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_rgba(0,217,255,0.4)] ${feature.color === 'blue' ? 'bg-cyan-500/10 border border-cyan-400/50 text-cyan-400' : feature.color === 'purple' ? 'bg-purple-500/10 border border-purple-400/50 text-purple-400' : feature.color === 'orange' ? 'bg-orange-500/10 border border-orange-400/50 text-orange-400' : feature.color === 'green' ? 'bg-green-500/10 border border-green-400/50 text-green-400' : 'bg-cyan-500/10 border border-cyan-400/50 text-cyan-400'}`}>
                   {feature.icon}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">{feature.title}</h3>
+                  <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
                     {feature.desc}
                   </p>
                 </div>

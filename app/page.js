@@ -60,7 +60,7 @@ export default function LandingPage() {
           font-size: 0.65rem;
           letter-spacing: 0.45em;
           text-transform: uppercase;
-          color: #1c1b18;
+          color: #00d9ff;
           position: relative;
           padding-bottom: 3px;
           transition: opacity 0.35s ease;
@@ -70,30 +70,45 @@ export default function LandingPage() {
           position: absolute;
           bottom: 0; left: 0;
           width: 100%; height: 1px;
-          background: #1c1b18;
+          background: #00d9ff;
           transform-origin: left;
           transition: transform 0.4s ease;
+          box-shadow: 0 0 10px rgba(0, 217, 255, 0.6);
         }
-        .l-enter-link:hover::after { transform: scaleX(0); transform-origin: right; }
-        .l-enter-link:hover { opacity: 0.45; }
+        .l-enter-link:hover::after { 
+          transform: scaleX(0); 
+          transform-origin: right;
+          box-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
+        }
+        .l-enter-link:hover { 
+          opacity: 0.45;
+          text-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
+        }
       `}</style>
 
       <main
         ref={rootRef}
-        className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#F7F6F1] px-8"
+        className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a0a0a] via-[#0f0f1e] to-[#1a1a2e] px-8 relative"
       >
-        <div className="flex flex-col items-center">
+        {/* Animated background grid */}
+        <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+        
+        {/* Glow orbs for depth */}
+        <div className="absolute top-20 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl opacity-30 pointer-events-none" />
+        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl opacity-30 pointer-events-none" />
+
+        <div className="flex flex-col items-center relative z-10">
 
           <div className="relative w-[min(38vw,10rem)]" style={{ aspectRatio: "556/501" }}>
-            <svg viewBox="0 0 556 501" className="absolute inset-0 w-full h-full" aria-hidden="true">
-              <path className="l-icon-fill" d={ICON_PATH} fill="#1c1b18" />
+            <svg viewBox="0 0 556 501" className="absolute inset-0 w-full h-full drop-shadow-lg" style={{ filter: 'drop-shadow(0 0 20px rgba(0, 217, 255, 0.4))' }} aria-hidden="true">
+              <path className="l-icon-fill" d={ICON_PATH} fill="#00d9ff" />
             </svg>
             <svg viewBox="0 0 556 501" className="absolute inset-0 w-full h-full" aria-hidden="true">
               <path
                 ref={iconStrokeRef}
                 d={ICON_PATH}
                 fill="none"
-                stroke="#1c1b18"
+                stroke="#00d9ff"
                 strokeWidth="6"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -101,15 +116,15 @@ export default function LandingPage() {
             </svg>
           </div>
           <div className="relative mt-6 w-[min(55vw,16rem)]" style={{ aspectRatio: "41/9" }}>
-            <svg viewBox="0 0 41 9" className="absolute inset-0 w-full h-full" aria-hidden="true">
-              <path className="l-wm-fill" d={WORDMARK_PATH} fill="#1c1b18" />
+            <svg viewBox="0 0 41 9" className="absolute inset-0 w-full h-full drop-shadow-lg" style={{ filter: 'drop-shadow(0 0 15px rgba(0, 217, 255, 0.3))' }} aria-hidden="true">
+              <path className="l-wm-fill" d={WORDMARK_PATH} fill="#e5e7eb" />
             </svg>
             <svg viewBox="0 0 41 9" className="absolute inset-0 w-full h-full" aria-hidden="true">
               <path
                 ref={wmStrokeRef}
                 d={WORDMARK_PATH}
                 fill="none"
-                stroke="#1c1b18"
+                stroke="#e5e7eb"
                 strokeWidth="0.35"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -120,13 +135,12 @@ export default function LandingPage() {
           <p
             className="mt-4"
             style={{
-              
               fontWeight: 12000,
               fontSize: "0.58rem",
               letterSpacing: "0.52em",
               textTransform: "uppercase",
-              color: "#000000",
-          
+              color: "#00d9ff",
+              textShadow: '0 0 10px rgba(0, 217, 255, 0.5)',
             }}
           >
             Autonomous Precision Robotics
